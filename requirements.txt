@@ -1,0 +1,4 @@
+# Production runtime is CPython 3.12 on Linux x86_64 with CUDA 13.0.
+# Install with hash verification, or use the Dockerfile:
+#   pip install --require-hashes -r requirements.txt
+-r requirements/runtime.lock

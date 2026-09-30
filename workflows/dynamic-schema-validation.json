@@ -1,0 +1,235 @@
+{
+  "generation_executed": false,
+  "full_comfyui_imported": false,
+  "method": "Execute AST-extracted official schema constructors and DynamicCombo expansion functions with input-record stubs",
+  "checks": {
+    "text_to_video": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "image_to_video": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "first_last_frame": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "text_to_video_2stage": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "image_to_video_2stage": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "audio_to_video": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "image_audio_to_video": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "text_to_audio": {
+      "class_type": "SaveAudioAdvanced",
+      "expanded_format": {
+        "format": "flac"
+      },
+      "passed": true
+    },
+    "video_to_video": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "video_to_video_2stage": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "video_control": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "video_control_2stage": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "video_deblur": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "reference_to_video": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "motion_track": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "video_inpaint": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "video_outpaint": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    },
+    "video_upscale_x2": {
+      "class_type": "SaveVideo",
+      "expanded_format": {
+        "codec": {
+          "encoding": {
+            "encoding": "auto"
+          },
+          "codec": "h264"
+        },
+        "format": "mp4"
+      },
+      "passed": true
+    }
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-29",
+  "description": "Pinned ComfyUI LTX 2.5 CQ video enhancer V2 bundle. Dev INT8 ConvRot transformer plus the publisher's distilled and CQ LoRAs, convolution video VAE, audio VAE, and INT8 Gemma encoder.",
+  "precision": "cq-v2",
+  "models": [
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "destination": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "size": 364866540,
+      "sha256": "c52733d37f6a7fb7949c3dc0fb468c6cb2169e4d836983a73babb9f0d54837a5",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "vae/ltx-2.5-video-vae-conv-bf16.safetensors",
+      "destination": "vae/ltx-2.5-video-vae-conv-bf16.safetensors",
+      "size": 1452269922,
+      "sha256": "685b06ee3d9b2039647698fc4ea33175112462fc374e2777312c907897dfce8d",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "diffusion_models/ltx-2.5-22b-dev-transformer-comfy-int8-convrot.safetensors",
+      "destination": "diffusion_models/ltx-2.5-22b-dev-transformer-comfy-int8-convrot.safetensors",
+      "size": 21504034224,
+      "sha256": "2edbdb4465cd6c3b532cd67a31ddb38a63e97dcad20be3729675e2a4e8caf92b",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "destination": "text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "size": 15372969374,
+      "sha256": "6ce688a0aa98a5fa36a9f1e6c3f42152a498cc2b53ee8c15674c64244f91487f",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "loras/ltx-2.5-22b-distilled-lora-450-bf16.safetensors",
+      "destination": "loras/ltx-2.5-22b-distilled-lora-450-bf16.safetensors",
+      "size": 8899889568,
+      "sha256": "86370bbf79a9eb4edaa158907e2b48a5188fe4c5dc8ce30c7eb8f2f131a9bbf5",
+      "gated": "auto"
+    },
+    {
+      "repo": "CQdesign/LTX-2.5-CQ-Video-and-Image-Enhancer-LoRAs",
+      "revision": "6495196bc21b2e24615b27e480b30049ca4efeea",
+      "filename": "ltx2.5-CQ-enhancer-lora-V2.safetensors",
+      "destination": "loras/ltx2.5-CQ-enhancer-lora-V2.safetensors",
+      "size": 1340583888,
+      "sha256": "bc0924477007509db63a5a1a6c51c83194e724e8db6f04bc1fc3ba8225a5b730",
+      "gated": false
+    }
+  ]
+}

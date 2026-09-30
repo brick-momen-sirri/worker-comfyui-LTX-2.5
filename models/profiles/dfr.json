@@ -1,0 +1,61 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-12",
+  "description": "Official Python DFR split BF16 bundle. Comfy INT8 ConvRot weights are incompatible. Gemma tokenizer/config and audio vocoder are embedded. No temporal upsampling; six files only.",
+  "models": [
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "destination": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "size": 364866540,
+      "sha256": "c52733d37f6a7fb7949c3dc0fb468c6cb2169e4d836983a73babb9f0d54837a5",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "vae/ltx-2.5-video-vae-bf16.safetensors",
+      "destination": "vae/ltx-2.5-video-vae-bf16.safetensors",
+      "size": 1472223346,
+      "sha256": "847e14ca7f3355debca0cea4eaa24ac0fbcdf0061da054ac89ca638a869ddba3",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "destination": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "size": 42018190584,
+      "sha256": "31eb3cad89b9e54e99dd3baf286f70825ac4f6c660a70d9184d895be76d7bff4",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+      "destination": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+      "size": 995778752,
+      "sha256": "eb5a71fe4068ee87ccdb1c3aa635e547ca76bd2d30ae20ae889f2c325c0677e8",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "text_encoders/gemma4-12b-with-proj-ltx-2.5-bf16.safetensors",
+      "destination": "text_encoders/gemma4-12b-with-proj-ltx-2.5-bf16.safetensors",
+      "size": 26263858182,
+      "sha256": "ef7243612fdae7a75cb4d5cee9433e81380675fb6c213bd98ae74a9cd16561d1",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5-22b-IC-LoRA-Pixel-Spatial-Upscaler",
+      "revision": "b29c1f25902886fd40bc43db7b69e942457298d2",
+      "filename": "ltx-2.5-22b-ic-lora-pixel-spatial-upscaler-x2-1.0.safetensors",
+      "destination": "loras/ltx-2.5-22b-ic-lora-pixel-spatial-upscaler-x2-1.0.safetensors",
+      "size": 327322640,
+      "sha256": "984851b769ea2bcb4c9e0a239a7676239e42c6a6001ddc69943b41ff0b283c1d",
+      "gated": "auto"
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "input": {
+    "mode": "first_last_frame",
+    "prompt": "Smoothly transition from the first composition to the last.",
+    "media": {
+      "first_frame": {
+        "base64": "iVBORw0KGgoAAAANSUhEUgAAACgAAAAYCAIAAAAH5iiXAAAAJ0lEQVR4nO3NMREAAAgEILV/Z03h/QIF6K2MCb1isVgsFovFYvGDA2f1AS9M68qOAAAAAElFTkSuQmCC"
+      },
+      "last_frame": {
+        "url": "https://YOUR-BUCKET.s3.YOUR-REGION.amazonaws.com/last.png?YOUR-PRESIGNED-QUERY"
+      }
+    }
+  }
+}

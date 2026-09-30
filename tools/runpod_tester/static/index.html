@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <title>LTX 2.5 · Runpod tester</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="page-header">
+      <div class="brand"><span class="brand-mark" aria-hidden="true">LTX</span><div><div class="eyebrow">LOCAL WORKSPACE / RUNPOD</div><h1>Try your LTX 2.5 worker</h1><p>Send a small job, follow its progress, and inspect the result.</p></div></div>
+      <span class="pill neutral" id="verificationBadge">No generation verified</span>
+    </header>
+
+    <section class="card connection" aria-labelledby="connectionHeading">
+      <div class="section-heading"><span class="step">01</span><div><h2 id="connectionHeading">Connect your endpoint</h2><p>Credentials stay in this page's memory and go through your local server.</p></div></div>
+      <div class="connection-fields">
+        <label>Endpoint ID<input id="endpointId" type="text" placeholder="Your Runpod endpoint ID" autocomplete="off" spellcheck="false"></label>
+        <label>Runpod API key<span class="password-field"><input id="apiKey" type="password" placeholder="Paste your API key" autocomplete="off" spellcheck="false"><button id="toggleKey" class="icon-button" type="button" aria-label="Show API key" aria-pressed="false">Show</button></span><span id="keyHint" class="hint">Never saved to browser storage.</span></label>
+        <button id="healthButton" class="button secondary" type="button">Check endpoint</button>
+      </div>
+      <div id="healthMessage" class="inline-note" role="status">Endpoint health checks connectivity and worker availability. It does not load an LTX model.</div>
+      <div id="healthMetrics" class="metrics" hidden></div>
+      <details id="s3Settings" class="s3-settings">
+        <summary><strong>S3 uploads</strong><span>Upload a source file and get a signed URL</span><span id="s3Availability" class="pill small neutral">Optional</span></summary>
+        <div class="s3-intro"><p>Set your S3-compatible storage, then choose a file under a media input and click <strong>Upload to S3</strong>. Each input gets its own URL.</p><p>These settings are for <strong>source uploads only</strong>. Generated output storage still uses the S3 environment variables on your Runpod worker.</p></div>
+        <div id="s3Unavailable" class="notice amber" role="status" hidden></div>
+        <div class="s3-grid">
+          <label class="s3-wide">S3 endpoint URL<input id="s3Endpoint" type="url" placeholder="https://your-s3-endpoint.example.com" autocomplete="off" spellcheck="false" maxlength="2048"><span class="hint">Service hostname only; put the bucket in its separate field. For R2: https://ACCOUNT_ID.r2.cloudflarestorage.com with no /bucket suffix.</span></label>
+          <label>Region<input id="s3Region" value="us-east-1" placeholder="us-east-1" autocomplete="off" spellcheck="false" maxlength="128"><span class="hint">Cloudflare R2: use auto. WEUR is a location hint, not the signing region.</span></label>
+          <label>Bucket<input id="s3Bucket" placeholder="your-input-bucket" autocomplete="off" spellcheck="false" maxlength="255"></label>
+          <label>Access key ID<input id="s3AccessKey" type="text" placeholder="S3 access key ID" autocomplete="off" spellcheck="false" maxlength="256"></label>
+          <label>Secret access key<input id="s3SecretKey" type="password" placeholder="S3 secret access key" autocomplete="off" spellcheck="false" maxlength="2048"></label>
+          <label class="s3-wide">Session token <span class="optional">optional · temporary credentials only</span><input id="s3SessionToken" type="password" placeholder="Leave empty for a long-lived access key" autocomplete="off" spellcheck="false" maxlength="8192"></label>
+          <label>Object prefix<input id="s3Prefix" value="ltx-inputs" placeholder="ltx-inputs" autocomplete="off" spellcheck="false" maxlength="500"></label>
+          <label>Signed URL expires after<select id="s3Expires"><option value="3600">1 hour</option><option value="21600">6 hours</option><option value="86400" selected>24 hours</option></select></label>
+          <label>Addressing style<select id="s3Addressing"><option value="path" selected>Path</option><option value="auto">Auto</option><option value="virtual">Virtual host</option></select></label>
+        </div>
+        <div class="s3-bottom"><p class="hint">Credentials stay in page/server memory for the upload. They are not saved, added to generation requests, or included in reports. URLs expire earlier if temporary credentials expire.</p><button id="clearS3Credentials" class="button quiet compact" type="button">Clear S3 credentials</button></div>
+        <div id="s3Message" class="notice" role="status" hidden></div>
+      </details>
+    </section>
+
+    <main class="workspace">
+      <section class="card composer" aria-labelledby="composeHeading">
+        <div class="section-heading"><span class="step">02</span><div><h2 id="composeHeading">Set up a test</h2><p>Start with 9 frames before trying longer clips.</p></div><span class="pill small" id="presetBadge">Small generation</span></div>
+        <form id="jobForm" novalidate>
+          <label>Generation mode<select id="modeSelect" disabled><option>Loading available workflows…</option></select></label>
+          <p class="mode-description" id="modeDescription"></p>
+          <div id="fourKNotice" class="notice amber" hidden><strong>Start with a 9-frame 4K test</strong><span>Image-to-video passed 9- and 33-frame tests on a 48 GB Runpod GPU. Standalone video upscaling still needs a GPU test. The current limit is 33 frames.</span></div>
+          <div id="validationNotice" class="notice amber" hidden><strong>Validation-only preset</strong><span>This intentionally omits the required image. An expected FAILED response checks the API; it does not test generation.</span></div>
+          <label>Prompt<textarea id="prompt" rows="3" maxlength="12000" placeholder="Describe the scene and its movement…">A small red flag moves gently in a light breeze, stable camera, soft natural daylight and quiet ambient sound.</textarea></label>
+          <div id="mediaSection" class="media-section" hidden><div class="subheading"><h3>Media inputs</h3><span>File or HTTPS URL, independently</span></div><div id="mediaInputs"></div><p class="hint">Files up to 6 MiB can be sent as base64. For larger files, configure S3 uploads above and upload first. S3 limits: 20 MiB per image, 256 MiB per video/audio file. Source video/audio must cover the requested duration.</p></div>
+          <div class="subheading parameters-heading"><h3>Generation settings</h3><span id="durationHint">9 frames · 0.38 seconds</span></div>
+          <div id="commonParameters" class="parameter-grid"></div>
+          <p id="dimensionHint" class="hint"></p>
+          <details id="advancedSection"><summary>More settings <span>Guidance, masks &amp; mode options</span></summary><div id="advancedParameters" class="parameter-grid advanced-grid"></div><label class="negative-prompt-label">Negative prompt <span class="optional">optional</span><textarea id="negativePrompt" rows="2" maxlength="12000" placeholder="Leave empty to use the workflow default"></textarea></label><p class="hint">The distilled sampling schedule is fixed. Negative prompts have little or no effect at CFG 1.</p></details>
+          <div id="formError" class="notice error" role="alert" hidden></div>
+          <div class="submit-row"><button id="runButton" class="button primary" type="submit" disabled><span aria-hidden="true">▶</span> Run test</button><button id="validationButton" class="button quiet" type="button" disabled>Validation-only preset</button></div>
+          <p class="hint run-hint">Run test submits one real Runpod job and can incur GPU charges. Submissions are never retried automatically.</p>
+        </form>
+      </section>
+
+      <section class="card results" aria-labelledby="resultHeading">
+        <div class="section-heading"><span class="step">03</span><div><h2 id="resultHeading">Watch the result</h2><p>Job progress and outputs appear here.</p></div></div>
+        <div class="job-status"><div class="status-line"><span class="status-dot" id="statusDot"></span><strong id="statusLabel">Ready for a first test</strong><span id="elapsed" class="elapsed"></span></div><p id="statusDescription">Connect your endpoint, then run the small text-to-video preset.</p></div>
+        <div id="jobDetails" hidden><div class="job-id"><span>JOB ID</span><code id="jobId"></code><button id="copyJobButton" class="icon-button" type="button" aria-label="Copy job ID">Copy</button></div><div id="jobTiming" class="metrics"></div><div class="job-actions"><button id="checkStatusButton" class="button secondary compact" type="button">Check status</button><button id="cancelButton" class="button danger compact" type="button">Cancel job</button><button id="detachButton" class="button quiet compact" type="button" title="Stop watching; a running job continues on Runpod">Detach</button></div></div>
+        <div id="pollMessage" class="notice amber" role="status" hidden></div>
+        <div id="emptyResult" class="empty-result"><div class="empty-icon" aria-hidden="true">▷</div><h3>Your output will appear here</h3><p>The first job may wait for a worker to start.<br>Checking health alone does not verify generation.</p><span class="mini-label">VIDEO · AUDIO · IMAGES</span></div>
+        <div id="resultMessage" class="notice" role="status" hidden></div>
+        <div id="outputMedia" class="output-media"></div>
+        <details id="attachSection"><summary>Already have a job ID? <span>Resume checking an existing job</span></summary><div class="attach-row"><label class="visually-hidden" for="attachJobId">Existing job ID</label><input id="attachJobId" placeholder="Paste an existing Runpod job ID" autocomplete="off" spellcheck="false"><button id="attachButton" type="button" class="button secondary compact">Attach</button></div></details>
+        <details id="jsonSection" hidden><summary>Response JSON <span>Media &amp; signed URL queries hidden</span></summary><pre id="resultJson" tabindex="0"></pre><button id="downloadReportButton" class="button secondary compact" type="button">Download full response</button><p class="hint">The downloaded file includes media and signed result URLs. Keep it private.</p></details>
+      </section>
+    </main>
+    <footer><span class="local-dot" aria-hidden="true"></span>Local tester · no external libraries · no saved credentials<span>Built for your LTX 2.5 worker</span></footer>
+  </div>
+</body>
+</html>

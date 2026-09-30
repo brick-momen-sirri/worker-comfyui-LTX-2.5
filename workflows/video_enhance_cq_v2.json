@@ -1,0 +1,166 @@
+{
+  "model": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "ltx-2.5-22b-dev-transformer-comfy-int8-convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "distilled_lora": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": ["model", 0],
+      "lora_name": "ltx-2.5-22b-distilled-lora-450-bf16.safetensors",
+      "strength_model": 0.5
+    }
+  },
+  "cq_lora": {
+    "class_type": "LoraLoaderModelOnly",
+    "inputs": {
+      "model": ["distilled_lora", 0],
+      "lora_name": "ltx2.5-CQ-enhancer-lora-V2.safetensors",
+      "strength_model": 1.0
+    }
+  },
+  "clip": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "type": "ltxv",
+      "device": "default"
+    }
+  },
+  "video_vae": {
+    "class_type": "VAELoader",
+    "inputs": {"vae_name": "ltx-2.5-video-vae-conv-bf16.safetensors"}
+  },
+  "audio_vae": {
+    "class_type": "VAELoader",
+    "inputs": {"vae_name": "ltx-2.5-audio-vae-bf16.safetensors"}
+  },
+  "positive": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {"clip": ["clip", 0], "text": ""}
+  },
+  "negative": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {"clip": ["clip", 0], "text": ""}
+  },
+  "conditioning": {
+    "class_type": "LTXVConditioning",
+    "inputs": {
+      "positive": ["positive", 0],
+      "negative": ["negative", 0],
+      "frame_rate": 30.0
+    }
+  },
+  "load_video": {
+    "class_type": "LoadVideo",
+    "inputs": {"file": "video.mp4"}
+  },
+  "video_components": {
+    "class_type": "GetVideoComponents",
+    "inputs": {"video": ["load_video", 0]}
+  },
+  "video_latent": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": {"width": 1280, "height": 704, "length": 153, "batch_size": 1}
+  },
+  "audio_latent": {
+    "class_type": "LTXVEmptyLatentAudio",
+    "inputs": {
+      "frames_number": 153,
+      "frame_rate": 30.0,
+      "batch_size": 1,
+      "audio_vae": ["audio_vae", 0]
+    }
+  },
+  "guide": {
+    "class_type": "LTXAddVideoICLoRAGuide",
+    "inputs": {
+      "positive": ["conditioning", 0],
+      "negative": ["conditioning", 1],
+      "vae": ["video_vae", 0],
+      "latent": ["video_latent", 0],
+      "image": ["video_components", 0],
+      "frame_idx": 0,
+      "strength": 1.0,
+      "latent_downscale_factor": 1.0,
+      "crop": "disabled",
+      "use_tiled_encode": false,
+      "tile_size": 256,
+      "tile_overlap": 64
+    }
+  },
+  "av_latent": {
+    "class_type": "LTXVConcatAVLatent",
+    "inputs": {"video_latent": ["guide", 2], "audio_latent": ["audio_latent", 0]}
+  },
+  "noise": {
+    "class_type": "RandomNoise",
+    "inputs": {"noise_seed": 42}
+  },
+  "sigmas": {
+    "class_type": "ManualSigmas",
+    "inputs": {"sigmas": "1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875, 0.0"}
+  },
+  "sampler": {
+    "class_type": "KSamplerSelect",
+    "inputs": {"sampler_name": "euler_ancestral"}
+  },
+  "guider": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": ["cq_lora", 0],
+      "positive": ["guide", 0],
+      "negative": ["guide", 1],
+      "cfg": 1.0
+    }
+  },
+  "sample": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": ["noise", 0],
+      "guider": ["guider", 0],
+      "sampler": ["sampler", 0],
+      "sigmas": ["sigmas", 0],
+      "latent_image": ["av_latent", 0]
+    }
+  },
+  "separate": {
+    "class_type": "LTXVSeparateAVLatent",
+    "inputs": {"av_latent": ["sample", 0]}
+  },
+  "crop_guides": {
+    "class_type": "LTXVCropGuides",
+    "inputs": {
+      "positive": ["guide", 0],
+      "negative": ["guide", 1],
+      "latent": ["separate", 0]
+    }
+  },
+  "decode": {
+    "class_type": "VAEDecode",
+    "inputs": {"samples": ["crop_guides", 2], "vae": ["video_vae", 0]}
+  },
+  "video": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": ["decode", 0],
+      "audio": ["video_components", 1],
+      "fps": 30.0,
+      "bit_depth": 8,
+      "color_space": "sRGB"
+    }
+  },
+  "save": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": ["video", 0],
+      "filename_prefix": "ltx25/cq_enhanced",
+      "format": "mp4",
+      "format.codec": "h264",
+      "format.codec.encoding": "auto"
+    }
+  }
+}

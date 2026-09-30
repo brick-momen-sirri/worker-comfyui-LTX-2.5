@@ -1,0 +1,233 @@
+{
+  "verified_utc": "2026-09-12",
+  "source_commit": "a95ab856bf29407b6b066ede0abe1846050db56c",
+  "implementation": "official Python DFR; spatial_upscalings=2, temporal_upscalings=0, BF16 and CPU offload",
+  "runtime_build": {
+    "passed": true,
+    "image": "worker-ltx25-dfr:runtime-check",
+    "image_id": "sha256:accd246974c17e1ad4aa77132230bab8fc9918db25153b12ad51db3e480f3a47",
+    "image_reported_size_bytes": 3700998708,
+    "architecture": "amd64",
+    "includes_models": false
+  },
+  "runtime_smoke": {
+    "dfr_import": true,
+    "official_cli_help_exit": 0,
+    "torch": "2.13.0+cu132",
+    "cuda": "13.2",
+    "torchaudio_distribution": "2.11.0+cu132",
+    "torchaudio_runtime_string": "2.11.0+cu130",
+    "torchaudio_cpu_resample": true,
+    "torchvision": "0.28.0+cu132",
+    "torchvision_cpu_nms": true,
+    "natten": "0.21.7+torch2130cu132",
+    "transformers": "5.14.1",
+    "cudnn": "9.24.0.43",
+    "pip_check_exception": "Only the exact upstream cudnn override is accepted"
+  },
+  "tests": {
+    "worker_windows": {
+      "passed": 147,
+      "seconds": 4.415
+    },
+    "tester_windows": {
+      "passed": 73,
+      "seconds": 2.379
+    },
+    "dfr_linux_container": {
+      "passed": 20,
+      "seconds": 0.972
+    },
+    "real_ffmpeg": {
+      "passed": true,
+      "input": [
+        3840,
+        2176
+      ],
+      "output": [
+        3840,
+        2160
+      ],
+      "frames": 9,
+      "fps": 24,
+      "copied_audio_sha256_equal": true
+    },
+    "javascript_syntax": "passed",
+    "model_downloader_linux": {
+      "passed": 27,
+      "seconds": 0.04
+    }
+  },
+  "model_manifest": {
+    "entries": 6,
+    "bytes": 71442240044,
+    "paths_match_wrapper": true,
+    "immutable_revisions_and_sha256_present": true,
+    "hugging_face_access_checks_passed": 6,
+    "models_downloaded_this_turn": true,
+    "weight_content_hashes_verified_this_turn": true
+  },
+  "startup_guards": {
+    "missing_models": {
+      "rejected": true,
+      "exit_code": 1
+    },
+    "local_gpu": {
+      "name": "RTX 4090",
+      "vram_mib": 24564,
+      "driver": "581.57",
+      "rejected": true,
+      "reason": "DFR profile requires Linux driver >=595.45.04 and a 48 GB class GPU"
+    }
+  },
+  "unverified": [
+    "Registry push of the DFR image",
+    "DFR full model weight loading on GPU",
+    "Runpod DFR generation and peak VRAM",
+    "DFR color and temporal quality",
+    "Live S3 delivery from DFR image",
+    "Runpod webhook delivery"
+  ],
+  "deployment_blockers": {
+    "gpu_host": "48 GB class with compatible R595+ driver and recommended128 GB RAM; current endpoint image still Comfy INT8"
+  },
+  "request_policy": {
+    "executionTimeout": 5400000,
+    "ttl": 7200000
+  },
+  "source_sha256": {
+    "Dockerfile.dfr": "99030e1fb422aced42e7c9bb3f2849fcb939a1722a16ba0728f287825d66803b",
+    "dfr_worker.py": "63cb7a06cc361c550c314a99a4c04af0ae03ad8be695a1e6e2756f4638a47502",
+    "ltx_worker/dfr.py": "8e209422bcb23fdefa55373337a86f248647c74f6e0808d96bf2968d40fdf1d1",
+    "sources.dfr.lock.json": "e44b726d5d9d93ff715c48ee301a40dbf7046588b5af69202423b87f0b02543b",
+    "models/profiles/dfr.json": "cdb905a8fe1cbe60eeb69426381afdf4c897541dd4c051f8a6fce5770da021c3",
+    "requirements/dfr.lock": "3847775f60acd5b8d34181bc7fe366b1899dd033312d466640edebf641d6f523",
+    "scripts/dfr_build_smoke.py": "023741d8e527722516ac6569c980732a395c4bd995134a11a07c1fb27425118d",
+    "scripts/dfr_preflight.py": "855ed5f139263a767a30ea8ca09b80f8118aeda14d12e5421bdebcddbbbff760",
+    "src/start-dfr.sh": "8cbe4a0fcd4d540246dff3953fd888963e3d1be191c0544c8fe5b365b8e6c27f",
+    "scripts/download_models.py": "c62a6bfe06734130eaa0c29cd5da0bcaa18e3a3ccae4f04774e5d4f1daf26ee2",
+    "scripts/dfr_model_smoke.py": "7c0d536781254be4757790fa401834e271732d9d24f69fa006431236738d1f40",
+    "scripts/build-dfr.ps1": "36b8363e3d3f5b6d388c8a870c406150ceba8e0939288358636c9c0da915cde5"
+  },
+  "full_build": {
+    "status": "image_exported_loaded_and_offline_verified",
+    "image": "momensirribrick/worker-ltx25-dfr:4k-v1",
+    "image_id": "sha256:a8be5da29781dd2e6f4338019f6a8d05efa18ace2ac2277b50aa623a65a7c908",
+    "architecture": "amd64",
+    "os": "linux",
+    "includes_models": true,
+    "image_engine_reported_size_bytes": 59687474540,
+    "container_apparent_filesystem_bytes": 78508413545,
+    "docker_image_ls_total_display": "138GB",
+    "model_download_and_hash_stage_seconds": 2589.9,
+    "image_export_seconds": 750.0,
+    "build_cli_exit_code": 1,
+    "build_cli_exit_explanation": "Task-owned build CLI intentionally canceled after completed image export during local unpacking at 17.55 GiB Windows free space. Completed image was preserved. Releasing the build snapshot made room; subsequent offline docker run unpacked and ran the stored image successfully without downloading models again.",
+    "recovery_first_container_exit_code": 0,
+    "recovery_unpack_and_credential_path_check_seconds": 504.219,
+    "postbuild_verification_exit_code": 0,
+    "registry_pushed": false,
+    "log": ".research/dfr-full-parallel-build.log"
+  },
+  "storage_cleanup": {
+    "completed": true,
+    "scope": "Authorized old local Comfy INT8 image aliases, Comfy runtime image, and unused cache older than 24h",
+    "registry_copy_preserved": true,
+    "existing_endpoint_unchanged": true,
+    "docker_linux_used_gb_before": 120.6,
+    "docker_linux_used_gb_after": 30.37,
+    "note": "Reclaimed VHD blocks are reusable by Docker; Windows free space need not increase.",
+    "post_recovery_docker_used_bytes": 96373751808,
+    "final_windows_c_free_gib": 17.51
+  },
+  "full_image_offline_checks": {
+    "network": "disabled",
+    "filesystem": "read-only",
+    "all_six_content_hashes": {
+      "exit_code": 0,
+      "seconds": 61.0,
+      "log": ".research\\dfr-full-model-hashes.log"
+    },
+    "model_headers_and_embedded_assets": {
+      "exit_code": 0,
+      "seconds": 11.828,
+      "log": ".research\\dfr-full-model-metadata.log"
+    },
+    "credential_audit": {
+      "credential_environment_variables_absent": true,
+      "inherited_hf_token_absent_from_inspect_and_history": true,
+      "credential_patterns_absent_from_inspect_and_history": true,
+      "known_credential_files_absent": true
+    },
+    "credential_audit_scope": "Bounded image inspect/history values and known credential file paths; not an exhaustive layer forensic audit",
+    "model_metadata_report": {
+      "models": [
+        {
+          "path": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+          "bytes": 364866540,
+          "tensor_count": 1329,
+          "dtypes": {
+            "BF16": 1329
+          }
+        },
+        {
+          "path": "vae/ltx-2.5-video-vae-bf16.safetensors",
+          "bytes": 1472223346,
+          "tensor_count": 396,
+          "dtypes": {
+            "BF16": 396
+          }
+        },
+        {
+          "path": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+          "bytes": 42018190584,
+          "tensor_count": 4349,
+          "dtypes": {
+            "F32": 290,
+            "BF16": 4059
+          }
+        },
+        {
+          "path": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+          "bytes": 995778752,
+          "tensor_count": 72,
+          "dtypes": {
+            "BF16": 72
+          }
+        },
+        {
+          "path": "text_encoders/gemma4-12b-with-proj-ltx-2.5-bf16.safetensors",
+          "bytes": 26263858182,
+          "tensor_count": 686,
+          "dtypes": {
+            "BF16": 681,
+            "U8": 5
+          }
+        },
+        {
+          "path": "loras/ltx-2.5-22b-ic-lora-pixel-spatial-upscaler-x2-1.0.safetensors",
+          "bytes": 327322640,
+          "tensor_count": 960,
+          "dtypes": {
+            "BF16": 960
+          }
+        }
+      ],
+      "official_split_cli": "passed",
+      "generated_keyframes": true,
+      "diffusion_video_vae": true,
+      "pixel_lora_matching_pairs": 480,
+      "gemma_config_type": "Gemma4UnifiedConfig",
+      "gemma_processor_type": "Gemma4UnifiedProcessor",
+      "gemma_tokenizer": "passed",
+      "scope": "CPU headers and embedded assets only; full weight loading, GPU generation, S3 and visual quality were not tested"
+    }
+  },
+  "storage_planning": {
+    "additional_build_capacity_gb": [
+      220,
+      250
+    ],
+    "reason": "The model build snapshot, compressed layers and separately unpacked image can coexist. Prior 150 GB estimate proved insufficient for safe peak unpacking on this host."
+  }
+}

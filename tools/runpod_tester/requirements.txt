@@ -1,0 +1,2 @@
+# Optional local S3 source uploads; the Runpod tester's core uses the standard library.
+boto3==1.35.31

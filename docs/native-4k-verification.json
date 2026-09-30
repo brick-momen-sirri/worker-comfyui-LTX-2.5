@@ -1,0 +1,130 @@
+{
+  "date": "2026-09-12",
+  "mode": "image_to_video_native_4k",
+  "transport": "bundled workflow through original deployed worker",
+  "job_id": "d4e9b5d2-7fd3-4e33-a042-a92a4de5ca0f-e1",
+  "prompt_id": "78d8096d-21aa-4a4e-8636-4b1a1d72dbba",
+  "status": "COMPLETED",
+  "worker_success": true,
+  "delay_ms": 11892,
+  "execution_ms": 73208,
+  "requested_frames": 9,
+  "requested_fps": 24,
+  "workflow": {
+    "file": "workflows/image_to_video_native_4k.json",
+    "sha256": "96db758e94675e4809cd552d12dda5b2fa8ea9c8a7d16fbb50b5d2930cf7563f",
+    "model_profile": "int8",
+    "diffusion_stages": 1,
+    "generation_width": 3840,
+    "generation_height": 2176,
+    "upscaling": false,
+    "lora": false,
+    "final_crop": {
+      "width": 3840,
+      "height": 2160,
+      "x": 0,
+      "y": 8
+    }
+  },
+  "browser": {
+    "width": 3840,
+    "height": 2160,
+    "duration_seconds": 0.375,
+    "ready_state": 4,
+    "media_error": null,
+    "media_loaded": true,
+    "playback_verified": false,
+    "playback_verification_note": "Playback progression was not instrumented; metadata and readyState 4 were observed."
+  },
+  "output_media_count": 1,
+  "delivery_types": [
+    "s3_url"
+  ],
+  "additional_verified_runs": [
+    {
+      "mode": "image_to_video_native_4k",
+      "transport": "bundled workflow through original deployed worker",
+      "job_id": "a69e86cc-1ff6-405c-a82f-707426c1dc1d-e2",
+      "worker_id": "ul5wtnj5294bpe",
+      "prompt_id": "931795b2-883c-4623-aed8-6c20adc06984",
+      "status": "COMPLETED",
+      "worker_success": true,
+      "delay_ms": 13498,
+      "execution_ms": 1041038,
+      "requested_frames": 121,
+      "requested_fps": 24,
+      "generation_parameters_changed_from_nine_frame_run": [
+        "num_frames"
+      ],
+      "source_workflow_sha256": "96db758e94675e4809cd552d12dda5b2fa8ea9c8a7d16fbb50b5d2930cf7563f",
+      "ffprobe": {
+        "remote_probe": true,
+        "local_video_copy_saved": false,
+        "exit_code": 0,
+        "codec_name": "h264",
+        "width": 3840,
+        "height": 2160,
+        "r_frame_rate": "24/1",
+        "avg_frame_rate": "24/1",
+        "duration_seconds": 5.041667,
+        "nb_frames": 121
+      },
+      "browser": {
+        "width": 3840,
+        "height": 2160,
+        "duration_seconds": 5.041667,
+        "ready_state": 4,
+        "media_error": null,
+        "media_loaded": true,
+        "playback_verified": false,
+        "playback_verification_note": "Playback progression was not instrumented; metadata and readyState 4 were observed."
+      },
+      "output_media_count": 1,
+      "delivery_types": [
+        "s3_url"
+      ],
+      "runpod_policy": {
+        "executionTimeout": 3600000,
+        "ttl": 7200000
+      },
+      "peak_vram": "not measured"
+    }
+  ],
+  "gpu": "48 GB GPU, confirmed by user; exact model not measured",
+  "peak_vram": "not measured",
+  "new_image_build_performed": false,
+  "other_clip_durations_tested": true,
+  "verified_frame_counts": [
+    9,
+    121
+  ],
+  "allowed_frame_counts": [
+    9,
+    121
+  ],
+  "default_frames": 9,
+  "native_named_api_on_new_image": "not Runpod-tested",
+  "local_validation": {
+    "worker_tests_passed": 119,
+    "worker_tests_seconds": 49.425,
+    "tester_tests_passed": 62,
+    "tester_tests_seconds": 1.959,
+    "source_validated_workflows": 21,
+    "source_validated_node_classes": 55,
+    "source_validation_errors": 0,
+    "example_prepare_input_passed": true
+  },
+  "frame_121_extension_validation": {
+    "native_4k_tests_passed": 8,
+    "tester_tests_passed": 62,
+    "tester_tests_seconds": 1.81,
+    "javascript_syntax_passed": true,
+    "whitespace_passed": true
+  },
+  "user_quality_report": {
+    "date": "2026-09-12",
+    "observation": "Color artifacts reported in the 121-frame direct 4K result",
+    "cause": "not diagnosed",
+    "next_recipe": "official Python DFR spatial_upscalings=2"
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "input": {
+    "mode": "image_to_video_dfr_4k",
+    "prompt": "The family in the sunlit kitchen laughs as the oranges sprout tiny legs and perform a synchronized dance on the countertop. Warm natural light, consistent faces and colors, a steady camera, playful movement.",
+    "parameters": {
+      "num_frames": 33,
+      "fps": 24,
+      "seed": 42,
+      "image_strength": 0.8
+    },
+    "media": {
+      "image": {
+        "url": "https://your-s3-host.example/your-bucket/family.png?YOUR_PRESIGNED_QUERY"
+      }
+    }
+  },
+  "policy": {
+    "executionTimeout": 5400000,
+    "ttl": 7200000
+  }
+}

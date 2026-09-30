@@ -1,0 +1,18 @@
+{
+  "input": {
+    "mode": "video_upscale_4k",
+    "prompt": "Preserve the original scene, composition, subject, and camera motion. Resolve natural fine textures and clean edges.",
+    "media": {
+      "video": {
+        "url": "https://YOUR-BUCKET.s3.YOUR-REGION.amazonaws.com/source-with-audio.mp4?YOUR-PRESIGNED-QUERY"
+      }
+    },
+    "parameters": {
+      "width": 1920,
+      "height": 1088,
+      "num_frames": 9,
+      "fps": 24,
+      "seed": 42
+    }
+  }
+}

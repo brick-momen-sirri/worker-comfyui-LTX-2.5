@@ -1,0 +1,3835 @@
+{
+  "schema_version": 1,
+  "model_family": "LTX-2.5",
+  "precision": "int8",
+  "modes": {
+    "text_to_video": {
+      "file": "text_to_video.json",
+      "description": "text to video",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_T2V_I2V_Single_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 768,
+        "height": 512,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {},
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8
+    },
+    "image_to_video": {
+      "file": "image_to_video.json",
+      "description": "image to video",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_T2V_I2V_Single_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 768,
+        "height": 512,
+        "image_compression": 18,
+        "image_strength": 0.7,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "image_compression": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "image_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "height"
+          }
+        ],
+        "image_compression": [
+          {
+            "node_id": "image_preprocess",
+            "input": "img_compression"
+          }
+        ],
+        "image_strength": [
+          {
+            "node_id": "image_condition",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "image": {
+          "kind": "image",
+          "node_id": "load_image",
+          "input": "image",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8
+    },
+    "first_last_frame": {
+      "file": "first_last_frame.json",
+      "description": "first last frame",
+      "official_source": "https://github.com/Comfy-Org/workflow_templates/blob/cce0b679980e4215000f67fe7b12c3a1982310ea/templates/video_ltx2_5_flf2v.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 768,
+        "height": 512,
+        "image_compression": 18,
+        "first_frame_strength": 0.7,
+        "last_frame_strength": 0.7,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "image_compression": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "first_frame_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "last_frame_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "first_frame_resize",
+            "input": "width"
+          },
+          {
+            "node_id": "last_frame_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "first_frame_resize",
+            "input": "height"
+          },
+          {
+            "node_id": "last_frame_resize",
+            "input": "height"
+          }
+        ],
+        "image_compression": [
+          {
+            "node_id": "first_frame_preprocess",
+            "input": "img_compression"
+          },
+          {
+            "node_id": "last_frame_preprocess",
+            "input": "img_compression"
+          }
+        ],
+        "first_frame_strength": [
+          {
+            "node_id": "first_frame_condition",
+            "input": "strength"
+          }
+        ],
+        "last_frame_strength": [
+          {
+            "node_id": "last_frame_condition",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "video_cfg"
+          },
+          {
+            "node_id": "sample_guider",
+            "input": "audio_cfg"
+          }
+        ]
+      },
+      "media": {
+        "first_frame": {
+          "kind": "image",
+          "node_id": "load_first_frame",
+          "input": "image",
+          "required": true
+        },
+        "last_frame": {
+          "kind": "image",
+          "node_id": "load_last_frame",
+          "input": "image",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8
+    },
+    "text_to_video_2stage": {
+      "file": "text_to_video_2stage.json",
+      "description": "text to video 2stage",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_T2V_I2V_Two_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 512,
+        "height": 320,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          },
+          {
+            "node_id": "refine_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          },
+          {
+            "node_id": "refine_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {},
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 2,
+      "output_scale": 2,
+      "fixed_sampling_steps": 8
+    },
+    "image_to_video_2stage": {
+      "file": "image_to_video_2stage.json",
+      "description": "image to video 2stage",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_T2V_I2V_Two_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 512,
+        "height": 320,
+        "image_compression": 18,
+        "image_strength": 0.7,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "image_compression": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "image_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "height"
+          }
+        ],
+        "image_compression": [
+          {
+            "node_id": "image_preprocess",
+            "input": "img_compression"
+          }
+        ],
+        "image_strength": [
+          {
+            "node_id": "image_condition",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          },
+          {
+            "node_id": "refine_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          },
+          {
+            "node_id": "refine_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "image": {
+          "kind": "image",
+          "node_id": "load_image",
+          "input": "image",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 2,
+      "output_scale": 2,
+      "fixed_sampling_steps": 8
+    },
+    "audio_to_video": {
+      "file": "audio_to_video.json",
+      "description": "audio to video",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_A2V_Two_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 512,
+        "height": 320,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          }
+        ],
+        "duration": [
+          {
+            "node_id": "trim_audio",
+            "input": "duration"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          },
+          {
+            "node_id": "refine_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          },
+          {
+            "node_id": "refine_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "audio": {
+          "kind": "audio",
+          "node_id": "load_audio",
+          "input": "audio",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 2,
+      "output_scale": 2,
+      "fixed_sampling_steps": 8
+    },
+    "image_audio_to_video": {
+      "file": "image_audio_to_video.json",
+      "description": "image audio to video",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_A2V_Two_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 512,
+        "height": 320,
+        "image_compression": 18,
+        "image_strength": 0.7,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "image_compression": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "image_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "height"
+          }
+        ],
+        "image_compression": [
+          {
+            "node_id": "image_preprocess",
+            "input": "img_compression"
+          }
+        ],
+        "image_strength": [
+          {
+            "node_id": "image_condition",
+            "input": "strength"
+          }
+        ],
+        "duration": [
+          {
+            "node_id": "trim_audio",
+            "input": "duration"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          },
+          {
+            "node_id": "refine_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          },
+          {
+            "node_id": "refine_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "image": {
+          "kind": "image",
+          "node_id": "load_image",
+          "input": "image",
+          "required": true
+        },
+        "audio": {
+          "kind": "audio",
+          "node_id": "load_audio",
+          "input": "audio",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 2,
+      "output_scale": 2,
+      "fixed_sampling_steps": 8
+    },
+    "text_to_audio": {
+      "file": "text_to_audio.json",
+      "description": "text to audio",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_T2A_Single_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {},
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "audio",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8
+    },
+    "video_to_video": {
+      "file": "video_to_video.json",
+      "description": "video to video",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Union_Control_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 768,
+        "height": 512,
+        "canny_low": 0.4,
+        "canny_high": 0.8,
+        "lora_strength": 1.0,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 64
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 64
+        },
+        "canny_low": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 0.99
+        },
+        "canny_high": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 0.99
+        },
+        "lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "control_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "video_frames",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "height"
+          }
+        ],
+        "canny_low": [
+          {
+            "node_id": "canny",
+            "input": "low_threshold"
+          }
+        ],
+        "canny_high": [
+          {
+            "node_id": "canny",
+            "input": "high_threshold"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "video": {
+          "kind": "video",
+          "node_id": "load_video",
+          "input": "file",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8
+    },
+    "video_to_video_2stage": {
+      "file": "video_to_video_2stage.json",
+      "description": "video to video 2stage",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Union_Control_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 512,
+        "height": 320,
+        "canny_low": 0.4,
+        "canny_high": 0.8,
+        "lora_strength": 1.0,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 64
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 64
+        },
+        "canny_low": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 0.99
+        },
+        "canny_high": {
+          "type": "number",
+          "minimum": 0.01,
+          "maximum": 0.99
+        },
+        "lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "control_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "video_frames",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "height"
+          }
+        ],
+        "canny_low": [
+          {
+            "node_id": "canny",
+            "input": "low_threshold"
+          }
+        ],
+        "canny_high": [
+          {
+            "node_id": "canny",
+            "input": "high_threshold"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          },
+          {
+            "node_id": "refine_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          },
+          {
+            "node_id": "refine_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "video": {
+          "kind": "video",
+          "node_id": "load_video",
+          "input": "file",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 2,
+      "output_scale": 2,
+      "fixed_sampling_steps": 8
+    },
+    "video_control": {
+      "file": "video_control.json",
+      "description": "video control",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Union_Control_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 768,
+        "height": 512,
+        "lora_strength": 1.0,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 64
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 64
+        },
+        "lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "control_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "video_frames",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "height"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "video": {
+          "kind": "video",
+          "node_id": "load_video",
+          "input": "file",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8
+    },
+    "video_control_2stage": {
+      "file": "video_control_2stage.json",
+      "description": "video control 2stage",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Union_Control_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 512,
+        "height": 320,
+        "lora_strength": 1.0,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 64
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 64
+        },
+        "lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "control_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "video_frames",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "height"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          },
+          {
+            "node_id": "refine_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          },
+          {
+            "node_id": "refine_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "video": {
+          "kind": "video",
+          "node_id": "load_video",
+          "input": "file",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 2,
+      "output_scale": 2,
+      "fixed_sampling_steps": 8
+    },
+    "video_deblur": {
+      "file": "video_deblur.json",
+      "description": "video deblur",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_V2V_ICLoRA_Single_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 768,
+        "height": 512,
+        "lora_strength": 1.0,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "control_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "video_frames",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "height"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "duration": [
+          {
+            "node_id": "trim_audio",
+            "input": "duration"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "video": {
+          "kind": "video",
+          "node_id": "load_video",
+          "input": "file",
+          "required": true,
+          "require_audio": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8
+    },
+    "reference_to_video": {
+      "file": "reference_to_video.json",
+      "description": "reference to video",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Ingredients_Single_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 768,
+        "height": 512,
+        "lora_strength": 1.3,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "control_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "reference_repeat",
+            "input": "amount"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "reference_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "reference_resize",
+            "input": "height"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "image": {
+          "kind": "image",
+          "node_id": "load_image",
+          "input": "image",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8
+    },
+    "motion_track": {
+      "file": "motion_track.json",
+      "description": "motion track",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Motion_Track_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 768,
+        "height": 512,
+        "image_compression": 18,
+        "image_strength": 0.7,
+        "tracks_json": "[[{\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}, {\"x\": 384, \"y\": 256}]]",
+        "lora_strength": 1.0,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 64
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 64
+        },
+        "image_compression": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "image_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "tracks_json": {
+          "type": "string",
+          "max_length": 200000
+        },
+        "lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "control_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "width"
+          },
+          {
+            "node_id": "tracks",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "height"
+          },
+          {
+            "node_id": "tracks",
+            "input": "height"
+          }
+        ],
+        "image_compression": [
+          {
+            "node_id": "image_preprocess",
+            "input": "img_compression"
+          }
+        ],
+        "image_strength": [
+          {
+            "node_id": "image_condition",
+            "input": "strength"
+          }
+        ],
+        "tracks_json": [
+          {
+            "node_id": "tracks",
+            "input": "tracks"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "image": {
+          "kind": "image",
+          "node_id": "load_image",
+          "input": "image",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8
+    },
+    "video_inpaint": {
+      "file": "video_inpaint.json",
+      "description": "video inpaint",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Inpaint_Two_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 512,
+        "height": 320,
+        "lora_strength": 1.0,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "control_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "video_frames",
+            "input": "length"
+          },
+          {
+            "node_id": "mask_video_frames",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "width"
+          },
+          {
+            "node_id": "mask_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "source_resize",
+            "input": "height"
+          },
+          {
+            "node_id": "mask_resize",
+            "input": "height"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "duration": [
+          {
+            "node_id": "trim_audio",
+            "input": "duration"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          },
+          {
+            "node_id": "refine_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          },
+          {
+            "node_id": "refine_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "video": {
+          "kind": "video",
+          "node_id": "load_video",
+          "input": "file",
+          "required": true,
+          "require_audio": true
+        },
+        "mask_video": {
+          "kind": "video",
+          "node_id": "load_mask_video",
+          "input": "file",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 2,
+      "output_scale": 2,
+      "fixed_sampling_steps": 8
+    },
+    "video_outpaint": {
+      "file": "video_outpaint.json",
+      "description": "video outpaint",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Outpaint_Two_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 512,
+        "height": 320,
+        "pad_left": 128,
+        "pad_right": 128,
+        "pad_top": 96,
+        "pad_bottom": 96,
+        "lora_strength": 1.0,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "pad_left": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 512,
+          "multiple_of": 32
+        },
+        "pad_right": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 512,
+          "multiple_of": 32
+        },
+        "pad_top": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 512,
+          "multiple_of": 32
+        },
+        "pad_bottom": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 512,
+          "multiple_of": 32
+        },
+        "lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "control_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "video_frames",
+            "input": "length"
+          },
+          {
+            "node_id": "mask_repeat",
+            "input": "amount"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "source_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "source_resize",
+            "input": "height"
+          }
+        ],
+        "pad_left": [
+          {
+            "node_id": "pad_source",
+            "input": "left"
+          }
+        ],
+        "pad_right": [
+          {
+            "node_id": "pad_source",
+            "input": "right"
+          }
+        ],
+        "pad_top": [
+          {
+            "node_id": "pad_source",
+            "input": "top"
+          }
+        ],
+        "pad_bottom": [
+          {
+            "node_id": "pad_source",
+            "input": "bottom"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "duration": [
+          {
+            "node_id": "trim_audio",
+            "input": "duration"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          },
+          {
+            "node_id": "refine_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          },
+          {
+            "node_id": "refine_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "video": {
+          "kind": "video",
+          "node_id": "load_video",
+          "input": "file",
+          "required": true,
+          "require_audio": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 2,
+      "output_scale": 2,
+      "fixed_sampling_steps": 8
+    },
+    "video_upscale_x2": {
+      "file": "video_upscale_x2.json",
+      "description": "Creative 2x video upscaling with the official LTX 2.5 pixel spatial IC-LoRA",
+      "official_source": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Pixel-Spatial-Upscaler/blob/b29c1f25902886fd40bc43db7b69e942457298d2/README.md",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 512,
+        "height": 288,
+        "lora_strength": 1.0,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 241,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1536,
+          "multiple_of": 32
+        },
+        "lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 2
+        },
+        "control_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "video_frames",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width",
+            "multiplier": 2
+          },
+          {
+            "node_id": "source_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height",
+            "multiplier": 2
+          },
+          {
+            "node_id": "source_resize",
+            "input": "height"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "duration": [
+          {
+            "node_id": "trim_audio",
+            "input": "duration"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "video": {
+          "kind": "video",
+          "node_id": "load_video",
+          "input": "file",
+          "required": true,
+          "ensure_audio": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 2,
+      "fixed_sampling_steps": 8,
+      "adapted_from": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_V2V_ICLoRA_Single_Stage_Distilled.json"
+    },
+    "video_upscale_4k": {
+      "file": "video_upscale_4k.json",
+      "description": "Experimental 48 GB qualification: 1920x1088 reference to exact UHD with the LTX 2.5 pixel IC-LoRA",
+      "official_source": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Pixel-Spatial-Upscaler/blob/b29c1f25902886fd40bc43db7b69e942457298d2/README.md",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 9,
+        "width": 1920,
+        "height": 1088,
+        "lora_strength": 1.0,
+        "control_strength": 1.0,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 33,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "enum": [
+            1920
+          ],
+          "minimum": 1920,
+          "maximum": 1920,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "enum": [
+            1088
+          ],
+          "minimum": 1088,
+          "maximum": 1088,
+          "multiple_of": 32
+        },
+        "lora_strength": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        },
+        "control_strength": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "video_frames",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width",
+            "multiplier": 2
+          },
+          {
+            "node_id": "source_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height",
+            "multiplier": 2
+          },
+          {
+            "node_id": "source_resize",
+            "input": "height"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "duration": [
+          {
+            "node_id": "trim_audio",
+            "input": "duration"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "video": {
+          "kind": "video",
+          "node_id": "load_video",
+          "input": "file",
+          "required": true,
+          "ensure_audio": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 2,
+      "fixed_sampling_steps": 8,
+      "adapted_from": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_V2V_ICLoRA_Single_Stage_Distilled.json",
+      "admission_profile": "4k",
+      "output_dimensions": {
+        "width": 3840,
+        "height": 2160
+      }
+    },
+    "image_to_video_4k": {
+      "file": "image_to_video_4k.json",
+      "description": "Experimental 48 GB qualification: two-stage I2V followed by the LTX 2.5 pixel IC-LoRA to exact UHD",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_T2V_I2V_Two_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 9,
+        "width": 960,
+        "height": 544,
+        "image_compression": 18,
+        "image_strength": 0.7,
+        "seed": 42,
+        "cfg": 1.0,
+        "lora_strength": 1.0,
+        "control_strength": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 60
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 33,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "enum": [
+            960
+          ],
+          "minimum": 960,
+          "maximum": 960,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "enum": [
+            544
+          ],
+          "minimum": 544,
+          "maximum": 544,
+          "multiple_of": 32
+        },
+        "image_compression": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "image_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        },
+        "lora_strength": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        },
+        "control_strength": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          },
+          {
+            "node_id": "pixel_video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "width"
+          },
+          {
+            "node_id": "pixel_video_latent",
+            "input": "width",
+            "multiplier": 4
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "height"
+          },
+          {
+            "node_id": "pixel_video_latent",
+            "input": "height",
+            "multiplier": 4
+          }
+        ],
+        "image_compression": [
+          {
+            "node_id": "image_preprocess",
+            "input": "img_compression"
+          }
+        ],
+        "image_strength": [
+          {
+            "node_id": "image_condition",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          },
+          {
+            "node_id": "refine_noise",
+            "input": "noise_seed"
+          },
+          {
+            "node_id": "pixel_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          },
+          {
+            "node_id": "refine_guider",
+            "input": "cfg"
+          },
+          {
+            "node_id": "pixel_guider",
+            "input": "cfg"
+          }
+        ],
+        "lora_strength": [
+          {
+            "node_id": "iclora",
+            "input": "strength_model"
+          }
+        ],
+        "control_strength": [
+          {
+            "node_id": "control",
+            "input": "strength"
+          }
+        ],
+        "duration": [
+          {
+            "node_id": "trim_audio",
+            "input": "duration"
+          }
+        ]
+      },
+      "media": {
+        "image": {
+          "kind": "image",
+          "node_id": "load_image",
+          "input": "image",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 3,
+      "output_scale": 4,
+      "fixed_sampling_steps": 8,
+      "upscale_source": "https://huggingface.co/Lightricks/LTX-2.5-22b-IC-LoRA-Pixel-Spatial-Upscaler/blob/b29c1f25902886fd40bc43db7b69e942457298d2/README.md",
+      "admission_profile": "4k",
+      "output_dimensions": {
+        "width": 3840,
+        "height": 2160
+      }
+    },
+    "image_to_video_native_4k": {
+      "file": "image_to_video_native_4k.json",
+      "description": "Experimental native UHD qualification: one 3840x2176 image-to-video diffusion pass, then a center crop",
+      "official_source": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_T2V_I2V_Single_Stage_Distilled.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 9,
+        "width": 3840,
+        "height": 2176,
+        "image_compression": 18,
+        "image_strength": 0.7,
+        "seed": 42,
+        "cfg": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "enum": [
+            24
+          ],
+          "minimum": 24,
+          "maximum": 24
+        },
+        "num_frames": {
+          "type": "integer",
+          "enum": [
+            9,
+            121
+          ],
+          "minimum": 9,
+          "maximum": 121
+        },
+        "width": {
+          "type": "integer",
+          "enum": [
+            3840
+          ],
+          "minimum": 3840,
+          "maximum": 3840
+        },
+        "height": {
+          "type": "integer",
+          "enum": [
+            2176
+          ],
+          "minimum": 2176,
+          "maximum": 2176
+        },
+        "image_compression": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "image_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "image_resize",
+            "input": "height"
+          }
+        ],
+        "image_compression": [
+          {
+            "node_id": "image_preprocess",
+            "input": "img_compression"
+          }
+        ],
+        "image_strength": [
+          {
+            "node_id": "image_condition",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "cfg"
+          }
+        ]
+      },
+      "media": {
+        "image": {
+          "kind": "image",
+          "node_id": "load_image",
+          "input": "image",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8,
+      "admission_profile": "native_4k",
+      "output_dimensions": {
+        "width": 3840,
+        "height": 2160
+      }
+    }
+  }
+}

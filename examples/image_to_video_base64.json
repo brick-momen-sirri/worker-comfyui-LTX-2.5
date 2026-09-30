@@ -1,0 +1,17 @@
+{
+  "input": {
+    "mode": "image_to_video",
+    "prompt": "A cinematic close-up of a red fabric flag softly moving in the breeze.",
+    "media": {
+      "image": {
+        "base64": "iVBORw0KGgoAAAANSUhEUgAAACgAAAAYCAIAAAAH5iiXAAAAJ0lEQVR4nO3NMREAAAgEILV/Z03h/QIF6K2MCb1isVgsFovFYvGDA2f1AS9M68qOAAAAAElFTkSuQmCC"
+      }
+    },
+    "parameters": {
+      "num_frames": 9,
+      "width": 512,
+      "height": 320,
+      "seed": 42
+    }
+  }
+}

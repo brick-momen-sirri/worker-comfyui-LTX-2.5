@@ -1,0 +1,10 @@
+{
+  "input": {
+    "mode": "video_upscale_x2",
+    "prompt": "Preserve the original scene and motion while resolving natural fine detail.",
+    "media": {
+      "video": {"url": "https://YOUR-BUCKET.s3.YOUR-REGION.amazonaws.com/lowres.mp4?YOUR-PRESIGNED-QUERY"}
+    },
+    "parameters": {"width": 512, "height": 288, "num_frames": 121, "fps": 24, "seed": 42}
+  }
+}

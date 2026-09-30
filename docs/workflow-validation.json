@@ -1,0 +1,202 @@
+{
+  "generation_executed": false,
+  "models_loaded": false,
+  "mode_count": 18,
+  "unique_classes": 54,
+  "referenced_models": [
+    "diffusion_models/ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+    "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+    "loras/ltx-2.3-22b-ic-lora-deblur-0.9.safetensors",
+    "loras/ltx-2.3-22b-ic-lora-in-outpainting-0.9.safetensors",
+    "loras/ltx-2.3-22b-ic-lora-ingredients-0.9.safetensors",
+    "loras/ltx-2.3-22b-ic-lora-motion-track-control-ref0.5.safetensors",
+    "loras/ltx-2.3-22b-ic-lora-union-control-ref0.5.safetensors",
+    "loras/ltx-2.5-22b-ic-lora-pixel-spatial-upscaler-x2-1.0.safetensors",
+    "text_encoders/gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+    "vae/ltx-2.5-audio-vae-bf16.safetensors",
+    "vae/ltx-2.5-video-vae-bf16.safetensors"
+  ],
+  "modes": {
+    "text_to_video": {
+      "nodes": 20,
+      "media": [],
+      "status": "schema_checked"
+    },
+    "image_to_video": {
+      "nodes": 24,
+      "media": [
+        "image"
+      ],
+      "status": "schema_checked"
+    },
+    "first_last_frame": {
+      "nodes": 29,
+      "media": [
+        "first_frame",
+        "last_frame"
+      ],
+      "status": "schema_checked"
+    },
+    "text_to_video_2stage": {
+      "nodes": 29,
+      "media": [],
+      "status": "schema_checked"
+    },
+    "image_to_video_2stage": {
+      "nodes": 34,
+      "media": [
+        "image"
+      ],
+      "status": "schema_checked"
+    },
+    "audio_to_video": {
+      "nodes": 32,
+      "media": [
+        "audio"
+      ],
+      "status": "schema_checked"
+    },
+    "image_audio_to_video": {
+      "nodes": 37,
+      "media": [
+        "audio",
+        "image"
+      ],
+      "status": "schema_checked"
+    },
+    "text_to_audio": {
+      "nodes": 18,
+      "media": [],
+      "status": "schema_checked"
+    },
+    "video_to_video": {
+      "nodes": 28,
+      "media": [
+        "video"
+      ],
+      "status": "schema_checked"
+    },
+    "video_to_video_2stage": {
+      "nodes": 37,
+      "media": [
+        "video"
+      ],
+      "status": "schema_checked"
+    },
+    "video_control": {
+      "nodes": 27,
+      "media": [
+        "video"
+      ],
+      "status": "schema_checked"
+    },
+    "video_control_2stage": {
+      "nodes": 36,
+      "media": [
+        "video"
+      ],
+      "status": "schema_checked"
+    },
+    "video_deblur": {
+      "nodes": 28,
+      "media": [
+        "video"
+      ],
+      "status": "schema_checked"
+    },
+    "reference_to_video": {
+      "nodes": 26,
+      "media": [
+        "image"
+      ],
+      "status": "schema_checked"
+    },
+    "motion_track": {
+      "nodes": 28,
+      "media": [
+        "image"
+      ],
+      "status": "schema_checked"
+    },
+    "video_inpaint": {
+      "nodes": 50,
+      "media": [
+        "mask_video",
+        "video"
+      ],
+      "status": "schema_checked"
+    },
+    "video_outpaint": {
+      "nodes": 50,
+      "media": [
+        "video"
+      ],
+      "status": "schema_checked"
+    },
+    "video_upscale_x2": {
+      "nodes": 28,
+      "media": [
+        "video"
+      ],
+      "status": "schema_checked"
+    }
+  },
+  "errors": [],
+  "success": true,
+  "node_sources": {
+    "CFGGuider": ".research\\comfyui\\comfy_extras\\nodes_custom_sampler.py:823",
+    "CLIPLoader": ".research\\comfyui\\nodes.py:1008",
+    "CLIPTextEncode": ".research\\comfyui\\nodes.py:56",
+    "Canny": ".research\\comfyui\\comfy_extras\\nodes_canny.py:9",
+    "CreateVideo": ".research\\comfyui\\comfy_extras\\nodes_video.py:206",
+    "EmptyLTXVLatentVideo": ".research\\comfyui\\comfy_extras\\nodes_lt.py:63",
+    "GetImageSize": ".research\\comfyui\\comfy_extras\\nodes_images.py:716",
+    "GetVideoComponents": ".research\\comfyui\\comfy_extras\\nodes_video.py:254",
+    "ImageFromBatch": ".research\\comfyui\\comfy_extras\\nodes_images.py:283",
+    "ImagePadForOutpaint": ".research\\comfyui\\nodes.py:2003",
+    "ImageScale": ".research\\comfyui\\nodes.py:1883",
+    "ImageScaleBy": ".research\\comfyui\\nodes.py:1915",
+    "ImageToMask": ".research\\comfyui\\comfy_extras\\nodes_mask.py:131",
+    "KSamplerSelect": ".research\\comfyui\\comfy_extras\\nodes_custom_sampler.py:379",
+    "LTXAddVideoICLoRAGuide": ".research\\ltx\\iclora.py:18",
+    "LTXAddVideoICLoRAGuideAdvanced": ".research\\ltx\\iclora.py:261",
+    "LTXICLoRALoaderModelOnly": ".research\\ltx\\iclora.py:470",
+    "LTXVAddGuide": ".research\\comfyui\\comfy_extras\\nodes_lt.py:250",
+    "LTXVAudioOnlyEmptyVideoLatent": ".research\\ltx\\audio_only.py:65",
+    "LTXVAudioOnlyModel": ".research\\ltx\\audio_only.py:28",
+    "LTXVAudioVAEDecode": ".research\\comfyui\\comfy_extras\\nodes_lt_audio.py:60",
+    "LTXVAudioVAEEncode": ".research\\comfyui\\comfy_extras\\nodes_lt_audio.py:37",
+    "LTXVConcatAVLatent": ".research\\comfyui\\comfy_extras\\nodes_lt.py:896",
+    "LTXVConditioning": ".research\\comfyui\\comfy_extras\\nodes_lt.py:692",
+    "LTXVCropGuides": ".research\\comfyui\\comfy_extras\\nodes_lt.py:648",
+    "LTXVDrawTracks": ".research\\ltx\\sparse_tracks.py:209",
+    "LTXVDualCFGGuider": ".research\\comfyui\\comfy_extras\\nodes_lt.py:1246",
+    "LTXVEmptyLatentAudio": ".research\\comfyui\\comfy_extras\\nodes_lt_audio.py:93",
+    "LTXVImgToVideoInplace": ".research\\comfyui\\comfy_extras\\nodes_lt.py:132",
+    "LTXVInpaintPreprocess": ".research\\ltx\\vanish_nodes.py:96",
+    "LTXVLaplacianPyramidBlend": ".research\\ltx\\pyramid_blending.py:178",
+    "LTXVLatentUpsampler": ".research\\comfyui\\comfy_extras\\nodes_lt_upsampler.py:7",
+    "LTXVPreprocess": ".research\\comfyui\\comfy_extras\\nodes_lt.py:867",
+    "LTXVSeparateAVLatent": ".research\\comfyui\\comfy_extras\\nodes_lt.py:971",
+    "LTXVSetAudioRefTokens": ".research\\ltx\\iclora.py:534",
+    "LatentUpscaleModelLoader": ".research\\comfyui\\comfy_extras\\nodes_hunyuan.py:179",
+    "LoadAudio": ".research\\comfyui\\comfy_extras\\nodes_audio.py:359",
+    "LoadImage": ".research\\comfyui\\nodes.py:1738",
+    "LoadVideo": ".research\\comfyui\\comfy_extras\\nodes_video.py:287",
+    "ManualSigmas": ".research\\comfyui\\comfy_extras\\nodes_custom_sampler.py:1125",
+    "MaskToImage": ".research\\comfyui\\comfy_extras\\nodes_mask.py:109",
+    "RandomNoise": ".research\\comfyui\\comfy_extras\\nodes_custom_sampler.py:1003",
+    "RepeatImageBatch": ".research\\comfyui\\comfy_extras\\nodes_images.py:260",
+    "SamplerCustomAdvanced": ".research\\comfyui\\comfy_extras\\nodes_custom_sampler.py:1020",
+    "SamplerEulerAncestral": ".research\\comfyui\\comfy_extras\\nodes_custom_sampler.py:494",
+    "SaveAudioAdvanced": ".research\\comfyui\\comfy_extras\\nodes_audio.py:251",
+    "SaveVideo": ".research\\comfyui\\comfy_extras\\nodes_video.py:135",
+    "SetLatentNoiseMask": ".research\\comfyui\\nodes.py:1558",
+    "SolidMask": ".research\\comfyui\\comfy_extras\\nodes_mask.py:180",
+    "TrimAudioDuration": ".research\\comfyui\\comfy_extras\\nodes_audio.py:426",
+    "UNETLoader": ".research\\comfyui\\nodes.py:983",
+    "VAEDecodeTiled": ".research\\comfyui\\nodes.py:343",
+    "VAEEncodeTiled": ".research\\comfyui\\nodes.py:394",
+    "VAELoader": ".research\\comfyui\\nodes.py:771"
+  }
+}

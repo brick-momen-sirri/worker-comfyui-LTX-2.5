@@ -1,0 +1,161 @@
+{
+  "recorded_utc": "2026-09-29",
+  "profile": "cq-v2",
+  "branch": "ltx-2.5-production",
+  "model_bundle": {
+    "files": 6,
+    "bytes": 48934613516,
+    "gibibytes": 45.5739102475,
+    "download_access_preflight": {
+      "passed": true,
+      "uncached_files_authorized": 6
+    }
+  },
+  "local_tests": {
+    "worker_tests": 150,
+    "tester_tests": 75,
+    "javascript_syntax": true,
+    "python_compileall": true,
+    "pinned_source_schema": {
+      "passed": true,
+      "workflow_modes": 1,
+      "unique_classes": 22,
+      "referenced_models": 6,
+      "report": "docs/cq-v2-workflow-validation.json"
+    }
+  },
+  "runtime_docker_build": {
+    "platform": "linux/amd64",
+    "target": "runtime",
+    "exit_code": 0,
+    "models_loaded": false,
+    "comfyui_version": "0.35.0",
+    "registered_nodes": 1003,
+    "workflow_modes": 1,
+    "workflow_unique_classes": 22,
+    "workflow_referenced_models": 6,
+    "workflow_errors": [],
+    "build_log": ".research/cq-v2-runtime-build.log"
+  },
+  "full_docker_image": {
+    "build_exit_code": 0,
+    "platform": "linux/amd64",
+    "tag": "momensirribrick/worker-comfyui-ltx25:cq-v2",
+    "image_id": "sha256:9bd09e9b9ee2386feb0e09d138be8a761e5faf61512897ea9140c667617b3c8a",
+    "docker_inspect_size_bytes": 45893445282,
+    "apparent_root_filesystem_bytes": 56567128064,
+    "apparent_model_directory_bytes": 48934805504,
+    "docker_system_df_image_storage": "63.88GB",
+    "docker_image_ls_virtual_size": "102GB",
+    "profile_label": "cq-v2",
+    "model_files_verified": 6,
+    "model_bytes_verified": 48934613516,
+    "credential_value_in_metadata_or_history": false,
+    "credential_environment_variables": [],
+    "credential_files": [],
+    "build_log": ".research/cq-v2-full-build.log"
+  },
+  "registry": {
+    "existing_repository": "momensirribrick/worker-comfyui-ltx25",
+    "existing_repository_private": false,
+    "push_performed": true,
+    "target_repository": "momensirribrick/worker-comfyui-ltx25-cq",
+    "target_visibility_check": {
+      "user_confirmed_private": true,
+      "anonymous_http_status": 404,
+      "previous_anonymous_is_private": false,
+      "post_push_anonymous_http_status": 404
+    },
+    "push_status": "completed",
+    "push_exit_code": 0,
+    "verified_utc": "2026-09-29T13:01:37Z",
+    "published_tag": "momensirribrick/worker-comfyui-ltx25-cq:cq-v2",
+    "remote_index_digest": "sha256:9bd09e9b9ee2386feb0e09d138be8a761e5faf61512897ea9140c667617b3c8a",
+    "remote_linux_amd64_manifest_digest": "sha256:ddca390b85e905a0c5a3f906fdf805f53d7053fd7519d206714a7b5f70230b24",
+    "remote_digest_matches_local": true,
+    "authenticated_remote_inspection_exit_code": 0,
+    "remote_inspection_log": ".research/cq-v2-remote-manifest.log",
+    "push_log": ".research/cq-v2-push.log",
+    "private_ready_local_tag": "momensirribrick/worker-comfyui-ltx25-cq:cq-v2",
+    "reason": "The CQ publisher repository declares no license metadata; use a private registry repository unless redistribution permission is established."
+  },
+  "full_image_startup": {
+    "healthy": true,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "gpu_vram_gib": 24.0,
+    "cuda_kernel": true,
+    "native_bf16": true,
+    "torch": "2.11.0+cu130",
+    "cuda": "13.0",
+    "local_admission_override_gib": 0,
+    "production_admission_floor_gib": 47,
+    "registered_nodes": 1003,
+    "models_loaded": false,
+    "generation_executed": false,
+    "runsync_missing_media_smoke": {
+      "status": "FAILED",
+      "job_id": "test-fc432dd4-733d-4159-a18a-1a07bffb0bea",
+      "error": "Missing required media input 'video'"
+    },
+    "startup_log": ".research/cq-v2-full-startup.log"
+  },
+  "runpod_first_test": {
+    "endpoint_id": "dfadob3rm5dg32",
+    "job_id": "8520dc98-2010-4fdf-864b-502ac2a1f1f3-e2",
+    "status_at_diagnosis": "IN_QUEUE",
+    "requested_output": {"width": 1280, "height": 704, "frames": 33, "fps": 30},
+    "startup_log_date": "2026-09-29",
+    "startup_workers": ["b4ng7myb3thjb9", "x9ilzar681bhqy"],
+    "model_size_verification_passed": true,
+    "model_files_verified": 6,
+    "model_bytes_verified": 48934613516,
+    "startup_exit_code": 1,
+    "failure": "CQ-V2 admission policy requires 47 GiB total VRAM; assigned device exposes 31.4 GiB",
+    "required_total_vram_gib": 47,
+    "observed_total_vram_gib": 31.4,
+    "generation_executed_before_admission_fix": false,
+    "remediation": "Restrict the endpoint's GPU categories to 48 GB or larger, then redeploy workers using the same image. Do not include smaller fallback tiers.",
+    "completion": {
+      "status": "COMPLETED",
+      "output_success": true,
+      "generation_executed": true,
+      "worker_id": "4ihr6o8sbu3t1f",
+      "prompt_id": "019737d4-db58-407d-b095-006c685c9cb4",
+      "queue_time_ms": 798243,
+      "execution_time_ms": 50481,
+      "input": {"width": 320, "height": 176, "transport": "base64", "source": "Big Buck Bunny sample hosted by W3Schools"},
+      "output": {
+        "width": 1280,
+        "height": 704,
+        "frames": 33,
+        "fps": 30,
+        "duration_seconds": 1.1,
+        "video_codec": "h264",
+        "audio_codec": "aac",
+        "audio_channels": 2,
+        "audio_sample_rate": 48000,
+        "audio_duration_seconds": 1.1,
+        "bytes": 1880096,
+        "sha256": "0dfc28786e0b41acbbcb39f4c47e21ff19c1365985b9d623c29c01a33ea05324"
+      },
+      "r2_result_download_verified": true,
+      "full_video_decode_exit_code": 0,
+      "browser_video_ready_state": 4,
+      "browser_video_error": null,
+      "sampled_frames_visually_inspected": [0, 16, 32],
+      "visual_observation": "More defined grass, character and butterfly detail than the low-resolution input; warmer lighting, stronger colors and synthesized details. This was a qualitative sample inspection, not a fidelity or temporal-quality benchmark.",
+      "runtime_gpu_model": null,
+      "runtime_total_vram_gib": null,
+      "peak_vram_gib": null,
+      "raw_response": ".research/cq-v2-runpod-test/status.json",
+      "local_video": ".research/cq-v2-runpod-test/result-1280x704.mp4",
+      "comparison_video": ".research/cq-v2-runpod-test/before-after.mp4"
+    }
+  },
+  "not_run": [
+    "Full 153-frame CQ Enhancer V2 inference",
+    "Peak-VRAM measurement on RTX 6000 Ada 48 GB",
+    "Exact visual equivalence to the publisher's original GUI workflow",
+    "CQ cloud failure recovery and longer-video qualification"
+  ]
+}

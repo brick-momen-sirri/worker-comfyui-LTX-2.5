@@ -1,0 +1,11 @@
+{
+  "input": {
+    "mode": "video_to_video",
+    "prompt": "A cinematic clay animation following the source motion.",
+    "media": {
+      "video": {
+        "url": "https://YOUR-BUCKET.s3.YOUR-REGION.amazonaws.com/source.mp4?YOUR-PRESIGNED-QUERY"
+      }
+    }
+  }
+}

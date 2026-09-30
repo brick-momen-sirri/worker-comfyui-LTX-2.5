@@ -1,0 +1,21 @@
+{
+  "input": {
+    "mode": "video_enhance_cq_v2",
+    "media": {
+      "video": {
+        "url": "https://YOUR-S3-HOST/YOUR-BUCKET/source-121-frames-retimed-30fps.mp4"
+      }
+    },
+    "parameters": {
+      "width": 2560,
+      "height": 1440,
+      "num_frames": 121,
+      "fps": 30,
+      "seed": 42,
+      "cfg": 1.0,
+      "distilled_lora_strength": 0.5,
+      "cq_lora_strength": 1.0,
+      "guide_strength": 1.0
+    }
+  }
+}

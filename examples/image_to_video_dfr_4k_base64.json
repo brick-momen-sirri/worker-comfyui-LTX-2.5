@@ -1,0 +1,21 @@
+{
+  "input": {
+    "mode": "image_to_video_dfr_4k",
+    "prompt": "The abstract shapes move gently in warm light. A steady camera and smooth motion.",
+    "parameters": {
+      "num_frames": 33,
+      "fps": 24,
+      "seed": 42,
+      "image_strength": 0.8
+    },
+    "media": {
+      "image": {
+        "base64": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAAAYCAIAAAAH5iiXAAAAJ0lEQVR4nO3NMREAAAgEILV/Z03h/QIF6K2MCb1isVgsFovFYvGDA2f1AS9M68qOAAAAAElFTkSuQmCC"
+      }
+    }
+  },
+  "policy": {
+    "executionTimeout": 5400000,
+    "ttl": 7200000
+  }
+}

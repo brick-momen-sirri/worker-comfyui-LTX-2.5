@@ -1,0 +1,20 @@
+{
+  "input": {
+    "mode": "video_enhance_cq_v2",
+    "media": {
+      "video": {"url": "https://bucket.example/bedroom.mp4?signature=REPLACE_WITH_SIGNED_URL"}
+    },
+    "parameters": {
+      "width": 1920,
+      "height": 1088,
+      "num_frames": 33,
+      "fps": 30,
+      "seed": 42,
+      "cfg": 1.0,
+      "distilled_lora_strength": 0.5,
+      "cq_lora_strength": 1.0,
+      "guide_strength": 1.0
+    }
+  },
+  "policy": {"executionTimeout": 3600000, "ttl": 7200000}
+}

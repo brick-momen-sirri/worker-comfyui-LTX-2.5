@@ -1,0 +1,107 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-09-10",
+  "description": "Weights from pinned official LTX 2.5 ComfyUI examples and the official 2.5 pixel upscaler model card; BF16 bundle. Gemma4 tokenizer is embedded in the encoder weights. Audio VAE includes vocoder.",
+  "models": [
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "destination": "vae/ltx-2.5-audio-vae-bf16.safetensors",
+      "size": 364866540,
+      "sha256": "c52733d37f6a7fb7949c3dc0fb468c6cb2169e4d836983a73babb9f0d54837a5",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "vae/ltx-2.5-video-vae-bf16.safetensors",
+      "destination": "vae/ltx-2.5-video-vae-bf16.safetensors",
+      "size": 1472223346,
+      "sha256": "847e14ca7f3355debca0cea4eaa24ac0fbcdf0061da054ac89ca638a869ddba3",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "destination": "diffusion_models/ltx-2.5-22b-distilled-transformer-bf16.safetensors",
+      "size": 42018190584,
+      "sha256": "31eb3cad89b9e54e99dd3baf286f70825ac4f6c660a70d9184d895be76d7bff4",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+      "destination": "latent_upscale_models/ltx-2.5-latent-spatial-upscaler-x2-bf16-1.0.safetensors",
+      "size": 995778752,
+      "sha256": "eb5a71fe4068ee87ccdb1c3aa635e547ca76bd2d30ae20ae889f2c325c0677e8",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5",
+      "revision": "5e6e71018ee1756ed329b697a7b4aedc934dfce9",
+      "filename": "text_encoders/gemma4-12b-with-proj-ltx-2.5-bf16.safetensors",
+      "destination": "text_encoders/gemma4-12b-with-proj-ltx-2.5-bf16.safetensors",
+      "size": 26263858182,
+      "sha256": "ef7243612fdae7a75cb4d5cee9433e81380675fb6c213bd98ae74a9cd16561d1",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.3-22b-IC-LoRA-Ingredients",
+      "revision": "dcc403d92aa0f5a983c5dbc7282503ca52f73a08",
+      "filename": "ltx-2.3-22b-ic-lora-ingredients-0.9.safetensors",
+      "destination": "loras/ltx-2.3-22b-ic-lora-ingredients-0.9.safetensors",
+      "size": 1308778338,
+      "sha256": "515e4e139001ac6282357a5b35372e42e98b3affd5fcc886a52242abeed19559",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.3-22b-IC-LoRA-In-Outpainting",
+      "revision": "554060ba18950e5fd5e91e6a9ab2f55852fd05a4",
+      "filename": "ltx-2.3-22b-ic-lora-in-outpainting-0.9.safetensors",
+      "destination": "loras/ltx-2.3-22b-ic-lora-in-outpainting-0.9.safetensors",
+      "size": 1308778338,
+      "sha256": "73dd0841c0d4f0eb26fb1f017781b841b2752021944ac5ecefe57917f6dae6b5",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.3-22b-IC-LoRA-Motion-Track-Control",
+      "revision": "572bb9c9a1ba3d8e8724cce69783ffc2422386db",
+      "filename": "ltx-2.3-22b-ic-lora-motion-track-control-ref0.5.safetensors",
+      "destination": "loras/ltx-2.3-22b-ic-lora-motion-track-control-ref0.5.safetensors",
+      "size": 327309314,
+      "sha256": "e279807ee3aa3db1ce60188d665ff83342860367dcd6bac19f8bd5a99a9e1dca",
+      "gated": false
+    },
+    {
+      "repo": "Lightricks/LTX-2.3-22b-IC-LoRA-Union-Control",
+      "revision": "b4d1c4d8c9e544e9bbbd6811bb4363708b6093ff",
+      "filename": "ltx-2.3-22b-ic-lora-union-control-ref0.5.safetensors",
+      "destination": "loras/ltx-2.3-22b-ic-lora-union-control-ref0.5.safetensors",
+      "size": 654465352,
+      "sha256": "a1b888a87f661d27f08b394ae559e8e1050be33900bcc36a5cdf659e48f88d18",
+      "gated": false
+    },
+    {
+      "repo": "Lightricks/LTX-2.3-22b-IC-LoRA-Deblur",
+      "revision": "4b10fd3b154ae0119936e9d3f922d32a2f0a9422",
+      "filename": "ltx-2.3-22b-ic-lora-deblur-0.9.safetensors",
+      "destination": "loras/ltx-2.3-22b-ic-lora-deblur-0.9.safetensors",
+      "size": 906071437,
+      "sha256": "dcdd73b57c2c4d5f5bc6535e825f4758b654a583bc991caa50c6809b6990b4ab",
+      "gated": "auto"
+    },
+    {
+      "repo": "Lightricks/LTX-2.5-22b-IC-LoRA-Pixel-Spatial-Upscaler",
+      "revision": "b29c1f25902886fd40bc43db7b69e942457298d2",
+      "filename": "ltx-2.5-22b-ic-lora-pixel-spatial-upscaler-x2-1.0.safetensors",
+      "destination": "loras/ltx-2.5-22b-ic-lora-pixel-spatial-upscaler-x2-1.0.safetensors",
+      "size": 327322640,
+      "sha256": "984851b769ea2bcb4c9e0a239a7676239e42c6a6001ddc69943b41ff0b283c1d",
+      "gated": "auto"
+    }
+  ],
+  "precision": "bf16"
+}

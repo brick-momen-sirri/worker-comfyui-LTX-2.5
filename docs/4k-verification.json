@@ -1,0 +1,58 @@
+{
+  "date": "2026-09-12",
+  "mode": "image_to_video_4k",
+  "transport": "bundled workflow through original deployed worker",
+  "gpu": "48 GB GPU, confirmed by user; exact GPU model/peak allocation not measured",
+  "job_id": "2ce7f1d9-30e9-49e0-a96b-00834cfce498-e1",
+  "status": "COMPLETED",
+  "worker_success": true,
+  "delay_ms": 18574,
+  "execution_ms": 91810,
+  "requested_frames": 9,
+  "requested_fps": 24,
+  "browser": {
+    "width": 3840,
+    "height": 2160,
+    "duration_seconds": 0.375,
+    "ready_state": 4
+  },
+  "output_media_count": 1,
+  "delivery_types": [
+    "s3_url"
+  ],
+  "additional_verified_runs": [
+    {
+      "date": "2026-09-12",
+      "mode": "image_to_video_4k",
+      "transport": "bundled workflow through original deployed worker",
+      "job_id": "8a4ff196-b3cb-418d-b673-eb97fd858497-e1",
+      "prompt_id": "b976211c-a3f8-490f-b533-6e5b3c034656",
+      "status": "COMPLETED",
+      "worker_success": true,
+      "delay_ms": 12746,
+      "execution_ms": 266635,
+      "requested_frames": 33,
+      "requested_fps": 24,
+      "browser": {
+        "width": 3840,
+        "height": 2160,
+        "duration_seconds": 1.375,
+        "ready_state": 4
+      },
+      "output_media_count": 1,
+      "delivery_types": [
+        "s3_url"
+      ],
+      "peak_vram": "not measured"
+    }
+  ],
+  "qualification": {
+    "maximum_admitted_frames": 33,
+    "verified_image_to_video_frame_counts": [9, 33],
+    "tested_121_frame_4k": false,
+    "standalone_video_upscale_4k": "not GPU-tested",
+    "native_named_api_on_new_image": "not Runpod-tested; new image build blocked"
+  },
+  "new_image_build": "blocked: Docker Desktop Linux engine unavailable",
+  "peak_vram": "not measured"
+}

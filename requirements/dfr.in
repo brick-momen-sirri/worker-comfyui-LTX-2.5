@@ -1,0 +1,25 @@
+# CPython 3.12 Linux x86_64; official LTX-2 a95ab856 DFR dependencies.
+# Generated from the two pinned pyprojects; use a separate venv from ComfyUI.
+# Torch/audio/vision/NATTEN URLs follow upstream sources, including its test audio index.
+# Preserve upstream cudnn override (older wheel has a fatal soname mismatch).
+torch @ https://download-r2.pytorch.org/whl/cu132/torch-2.13.0%2Bcu132-cp312-cp312-manylinux_2_28_x86_64.whl#sha256=4c1800e216b46bae03483bc94dd73a23ea43c265ab51f865e28070ca045d10a8
+torchaudio @ https://download.pytorch.org/whl/test/cu132/torchaudio-2.11.0%2Bcu132-cp312-cp312-manylinux_2_28_x86_64.whl#sha256=3ca747c3183537a0158867f60f6c9a4f1a8fe23dfc841821e8efef16f1f4c72d
+torchvision @ https://download-r2.pytorch.org/whl/cu132/torchvision-0.28.0%2Bcu132-cp312-cp312-manylinux_2_28_x86_64.whl#sha256=4865f491c69cbb6e0a4ad54d849004974c0a7957b1e183427119c53f09ae5125
+natten @ https://github.com/SHI-Labs/NATTEN/releases/download/v0.21.7/natten-0.21.7%2Btorch2130cu132-cp312-cp312-linux_x86_64.whl#sha256=99c504a0f190f8415ae04e4b55a4d145a54db3948718d07da4f0c1914a1e7396
+runpod==1.7.13
+websocket-client==1.8.0
+requests==2.32.5
+uv-build==0.9.30
+pip==26.0.1
+einops
+numpy
+av
+transformers>=5.8.0,<5.15
+safetensors
+accelerate
+scipy>=1.14
+mps-sdpa>=0.2.0; sys_platform == 'darwin' and platform_machine == 'arm64'
+tqdm
+pillow
+openimageio
+cloudpickle>=3.1

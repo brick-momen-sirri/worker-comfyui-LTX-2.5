@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {
+      "file": "LTX-2.5_A2V_Two_Stage_Distilled.json",
+      "sha256": "871b56bd602b9e3854b00f0454d48375fb2d08a9618d7be44dec0fe4faba04a3",
+      "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_A2V_Two_Stage_Distilled.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    },
+    {
+      "file": "LTX-2.5_ICLoRA_Ingredients_Single_Stage_Distilled.json",
+      "sha256": "afb34052b0569ffaa7930bfa2c854798b8121ce72240306eb7f49724efbe1f72",
+      "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Ingredients_Single_Stage_Distilled.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    },
+    {
+      "file": "LTX-2.5_ICLoRA_Inpaint_Two_Stage_Distilled.json",
+      "sha256": "7c77db0895cf7efa7ec6563bbedadf70abbb1e12176b888e33db74affa2c92a0",
+      "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Inpaint_Two_Stage_Distilled.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    },
+    {
+      "file": "LTX-2.5_ICLoRA_Motion_Track_Distilled.json",
+      "sha256": "6ff1604c041771f9be6a375c27f5fcb5689ffe94194f56d188ce1d3c2e809ecd",
+      "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Motion_Track_Distilled.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    },
+    {
+      "file": "LTX-2.5_ICLoRA_Outpaint_Two_Stage_Distilled.json",
+      "sha256": "572efd3720d0e805b862c0262b3064be5b63f073aeee62048535b11baad87396",
+      "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Outpaint_Two_Stage_Distilled.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    },
+    {
+      "file": "LTX-2.5_ICLoRA_Union_Control_Distilled.json",
+      "sha256": "c41586a1426fc68a136eb958004aaa9e529fe78f401262b475fad3180558cfd7",
+      "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_ICLoRA_Union_Control_Distilled.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    },
+    {
+      "file": "LTX-2.5_T2A_Single_Stage_Distilled.json",
+      "sha256": "3fbb5fa88a261eba46b8901a6d0438c1583b4d910f7abf03447e74c437509c88",
+      "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_T2A_Single_Stage_Distilled.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    },
+    {
+      "file": "LTX-2.5_T2V_I2V_Single_Stage_Distilled.json",
+      "sha256": "e264b203ec4b0ff1dfd448121c96ceb5d45dfe84b70fcac9a03e5bc700338f25",
+      "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_T2V_I2V_Single_Stage_Distilled.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    },
+    {
+      "file": "LTX-2.5_T2V_I2V_Two_Stage_Distilled.json",
+      "sha256": "b8b8d79b5cb09519e828a3cd438348b492b448547f030ed7e1098ad86ea3010a",
+      "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_T2V_I2V_Two_Stage_Distilled.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    },
+    {
+      "file": "LTX-2.5_V2V_ICLoRA_Single_Stage_Distilled.json",
+      "sha256": "5880e5025bd0e2df391a8a64c642199b6a7d0924925a1c54a71f3ce06cbfd4ff",
+      "url": "https://github.com/Lightricks/ComfyUI-LTXVideo/blob/15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d/example_workflows/2.5/LTX-2.5_V2V_ICLoRA_Single_Stage_Distilled.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    },
+    {
+      "file": "video_ltx2_5_flf2v.json",
+      "sha256": "c5acb1c4fd153e804bd06d74b7e22a479442339d43605c12bc102b245c344aa0",
+      "url": "https://github.com/Comfy-Org/workflow_templates/blob/cce0b679980e4215000f67fe7b12c3a1982310ea/templates/video_ltx2_5_flf2v.json",
+      "hash_basis": "Canonical upstream Git blob / raw HTTP bytes, not Windows CRLF checkout"
+    }
+  ]
+}

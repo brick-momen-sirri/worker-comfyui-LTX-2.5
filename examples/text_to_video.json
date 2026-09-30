@@ -1,0 +1,12 @@
+{
+  "input": {
+    "mode": "text_to_video",
+    "prompt": "A river flowing through a mossy forest, gentle water sounds.",
+    "parameters": {
+      "width": 512,
+      "height": 320,
+      "num_frames": 9,
+      "seed": 42
+    }
+  }
+}

@@ -1,0 +1,281 @@
+{
+  "source": "C:\\Users\\momen.sirri\\Downloads\\20260929_api-kling-v3-video_2345_SHOT_1130_v001.mp4",
+  "source_sha256": "48778102dc9518279cef7727f96d7f6b339f76a73136c6c065adaa6ef50e8f0f",
+  "source_width": 1920,
+  "source_height": 1076,
+  "source_fps": 24,
+  "source_frames": 121,
+  "new_ai_inference": true,
+  "mode": "video_enhance_cq_v2",
+  "inference_width": 2560,
+  "inference_height": 1440,
+  "inference_fps": 30,
+  "output": "D:\\worker-comfyui-LTX-2.5\\artifacts\\shot-1130-v001-cq-2560\\SHOT_1130_v001-CQ-2560x1440.mp4",
+  "comparison": "D:\\worker-comfyui-LTX-2.5\\artifacts\\shot-1130-v001-cq-2560\\SHOT_1130_v001-before-after.mp4",
+  "width": 2560,
+  "height": 1440,
+  "frames": 121,
+  "fps": 24,
+  "duration_seconds": 5.041666666666667,
+  "output_bytes": 16105169,
+  "output_sha256": "aab6490595c2991bb9817ec20b9b88e8a0925022378b039c20f1c86f454e8509",
+  "all_raw_results_decode_passed": true,
+  "final_decode_passed": true,
+  "comparison_decode_passed": true,
+  "postprocess": "Trim overlap frames, concatenate, and select frames to restore original 24 FPS. No generated output spatial crop. No generated output spatial resize or optical-flow interpolation.",
+  "audio": "Source has no audio; final output is silent.",
+  "peak_vram_measured": false,
+  "gpu_model_verified": false,
+  "cut_at_30fps_frames": [
+    23,
+    44,
+    65,
+    86,
+    107,
+    128
+  ],
+  "inspection_frames": [
+    0,
+    17,
+    18,
+    19,
+    34,
+    35,
+    36,
+    51,
+    52,
+    53,
+    60,
+    67,
+    68,
+    69,
+    84,
+    85,
+    86,
+    101,
+    102,
+    103,
+    120
+  ],
+  "parts": [
+    {
+      "endpoint_id": "dfadob3rm5dg32",
+      "source_start_frame": 0,
+      "parameters": {
+        "width": 2560,
+        "height": 1440,
+        "num_frames": 25,
+        "fps": 30,
+        "seed": 42,
+        "cfg": 1.0,
+        "distilled_lora_strength": 0.5,
+        "cq_lora_strength": 1.0,
+        "guide_strength": 1.0
+      },
+      "input_bytes": 830602,
+      "input_sha256": "8ecb9be95d7bf05237a9d7ebfc35e2018c12987f944b95fe83d14a0358c81b14",
+      "submitted_utc": "2026-09-29T17:48:57.208383+00:00",
+      "submission_attempted": true,
+      "job_id": "a02fc934-9118-4c09-9534-6872b17fad00-e2",
+      "output_bytes": 1311428,
+      "output_sha256": "2212b9b89247d50396f85f4ece09b12fb359f4951089ea04877d066053698413",
+      "execution_time_ms": 93634,
+      "r2_download_verified": true
+    },
+    {
+      "endpoint_id": "dfadob3rm5dg32",
+      "source_start_frame": 21,
+      "parameters": {
+        "width": 2560,
+        "height": 1440,
+        "num_frames": 25,
+        "fps": 30,
+        "seed": 42,
+        "cfg": 1.0,
+        "distilled_lora_strength": 0.5,
+        "cq_lora_strength": 1.0,
+        "guide_strength": 1.0
+      },
+      "input_bytes": 850284,
+      "input_sha256": "2605982d125b03b85b0f48e9617adb6d3db72186e8773ce800bdff34968d6ffe",
+      "submitted_utc": "2026-09-29T17:51:22.492943+00:00",
+      "submission_attempted": true,
+      "job_id": "d49b4b60-b0ab-42bf-8227-65f4e9f15555-e1",
+      "output_bytes": 1437201,
+      "output_sha256": "0afe24a02e171e00e310b0fae4e1a10810482c12dbe084dc41f7810f9a24d7e9",
+      "execution_time_ms": 89145,
+      "r2_download_verified": true
+    },
+    {
+      "endpoint_id": "dfadob3rm5dg32",
+      "source_start_frame": 42,
+      "parameters": {
+        "width": 2560,
+        "height": 1440,
+        "num_frames": 25,
+        "fps": 30,
+        "seed": 42,
+        "cfg": 1.0,
+        "distilled_lora_strength": 0.5,
+        "cq_lora_strength": 1.0,
+        "guide_strength": 1.0
+      },
+      "input_bytes": 876181,
+      "input_sha256": "465b38c7f4c13bfc1ff9fcf59f5bacc384a2c13b235bb3ea0031a178200c1911",
+      "submitted_utc": "2026-09-29T17:51:25.072428+00:00",
+      "submission_attempted": true,
+      "job_id": "0f99d95c-b40d-4e40-8793-fa888de8ee88-e2",
+      "output_bytes": 1388068,
+      "output_sha256": "9f77cbac2ae5de633c5135404bf259a1a12083d246a7cc50952a8b17929689f9",
+      "execution_time_ms": 89783,
+      "r2_download_verified": true
+    },
+    {
+      "endpoint_id": "dfadob3rm5dg32",
+      "source_start_frame": 63,
+      "parameters": {
+        "width": 2560,
+        "height": 1440,
+        "num_frames": 25,
+        "fps": 30,
+        "seed": 42,
+        "cfg": 1.0,
+        "distilled_lora_strength": 0.5,
+        "cq_lora_strength": 1.0,
+        "guide_strength": 1.0
+      },
+      "input_bytes": 869455,
+      "input_sha256": "49ab3219d4553e53b64ab9972c231ce46df5b4d948216ad56aba2132a4cf765a",
+      "submitted_utc": "2026-09-29T17:51:27.630171+00:00",
+      "submission_attempted": true,
+      "job_id": "b59b9288-36df-4e90-bf34-507f8bb36df7-e1",
+      "output_bytes": 1270611,
+      "output_sha256": "29212c7ee9546f3e5922126a013b6a656c8d607ef5f799454192e0437263ae6c",
+      "execution_time_ms": 89689,
+      "r2_download_verified": true
+    },
+    {
+      "endpoint_id": "dfadob3rm5dg32",
+      "source_start_frame": 84,
+      "parameters": {
+        "width": 2560,
+        "height": 1440,
+        "num_frames": 25,
+        "fps": 30,
+        "seed": 42,
+        "cfg": 1.0,
+        "distilled_lora_strength": 0.5,
+        "cq_lora_strength": 1.0,
+        "guide_strength": 1.0
+      },
+      "input_bytes": 920722,
+      "input_sha256": "eaf84ee7e4cdf6f91761d9923caf458067e2e2e4e254510cf632debaaa317b54",
+      "submitted_utc": "2026-09-29T17:51:30.323682+00:00",
+      "submission_attempted": true,
+      "job_id": "759cdca5-0687-49f1-baae-785817609967-e2",
+      "output_bytes": 1270628,
+      "output_sha256": "73aef7d9e4eff32527b61cd090c2e7ddd58600aec9d7eaaab662f1a4655777dc",
+      "execution_time_ms": 91380,
+      "r2_download_verified": true
+    },
+    {
+      "endpoint_id": "dfadob3rm5dg32",
+      "source_start_frame": 105,
+      "parameters": {
+        "width": 2560,
+        "height": 1440,
+        "num_frames": 25,
+        "fps": 30,
+        "seed": 42,
+        "cfg": 1.0,
+        "distilled_lora_strength": 0.5,
+        "cq_lora_strength": 1.0,
+        "guide_strength": 1.0
+      },
+      "input_bytes": 963707,
+      "input_sha256": "6b868858c44266c9fa787c188b577267970ef5adc1be64a222140b80c8d62889",
+      "submitted_utc": "2026-09-29T17:51:33.097023+00:00",
+      "submission_attempted": true,
+      "job_id": "724d8959-5b73-46e7-b6ff-98981b3a239c-e2",
+      "output_bytes": 1221727,
+      "output_sha256": "f05cae2b64cac44cc4048143fb77e50a0d95f7454b917238d4fde04cc161ca54",
+      "execution_time_ms": 96391,
+      "r2_download_verified": true
+    },
+    {
+      "endpoint_id": "dfadob3rm5dg32",
+      "source_start_frame": 126,
+      "parameters": {
+        "width": 2560,
+        "height": 1440,
+        "num_frames": 25,
+        "fps": 30,
+        "seed": 42,
+        "cfg": 1.0,
+        "distilled_lora_strength": 0.5,
+        "cq_lora_strength": 1.0,
+        "guide_strength": 1.0
+      },
+      "input_bytes": 1037210,
+      "input_sha256": "b533b56294d9d3a776d09367d76d90d6878daf1e171fcb094f0b9170b87e2394",
+      "submitted_utc": "2026-09-29T17:51:35.765954+00:00",
+      "submission_attempted": true,
+      "job_id": "579f1cab-2150-4257-b0e1-4fdb36bcdf46-e1",
+      "output_bytes": 1258899,
+      "output_sha256": "43cac5bb60fd167acb2182e79d1b00565c08dbb1b674bfc03b6d6ee0085190ed",
+      "execution_time_ms": 96985,
+      "r2_download_verified": true
+    }
+  ],
+  "temporal_diagnostic": {
+    "description": "Adjacent-frame mean absolute grayscale change, 0..255, downsampled to 256x144. Diagnostic only; not a perceptual quality score.",
+    "output_median": 0.9591335720486112,
+    "output_maximum": 4.228542751736111,
+    "source_median": 0.8919135199652777,
+    "source_maximum": 2.9857855902777777,
+    "joins": [
+      {
+        "frame": 23,
+        "output_change": 1.9488118489583333,
+        "source_change": 0.77001953125
+      },
+      {
+        "frame": 44,
+        "output_change": 3.639865451388889,
+        "source_change": 0.8384060329861112
+      },
+      {
+        "frame": 65,
+        "output_change": 2.4144151475694446,
+        "source_change": 0.8787977430555556
+      },
+      {
+        "frame": 86,
+        "output_change": 3.0772569444444446,
+        "source_change": 1.0287814670138888
+      },
+      {
+        "frame": 107,
+        "output_change": 2.6821831597222223,
+        "source_change": 0.0
+      },
+      {
+        "frame": 128,
+        "output_change": 3.478976779513889,
+        "source_change": 2.2877875434027777
+      }
+    ]
+  },
+  "verified_utc_date": "2026-09-29",
+  "local_tests": {
+    "targeted_unit_tests_passed": 64,
+    "javascript_syntax_passed": true,
+    "example_contract_validated": true
+  },
+  "visual_inspection": {
+    "sampled_frames_and_join_neighbors_inspected": true,
+    "observations": "Sharper building cladding and foliage; broad scene and warm hazy lighting retained. Color, contrast and fine texture differ from source and between independently generated sections. Adjacent-frame luma diagnostics show larger changes at joins; this is not proof of seamless temporal consistency.",
+    "scope": "Sampled still frames and full decoding; no claim of exact source fidelity or perceptually seamless motion."
+  },
+  "qualification_scope": "Seven 25-frame 2560x1440 jobs on the existing endpoint, stitched to preserve the original clip duration. No qualification of a single 121-frame 1440p job; no measured peak VRAM or independently verified GPU model."
+}

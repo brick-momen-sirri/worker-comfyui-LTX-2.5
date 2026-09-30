@@ -1,0 +1,20 @@
+{
+  "input": {
+    "mode": "image_to_video_4k",
+    "prompt": "The subject moves naturally as the camera slowly pushes in. Preserve the composition and resolve clean, detailed textures, with gentle ambient sound.",
+    "media": {
+      "image": {
+        "url": "https://YOUR-BUCKET.s3.YOUR-REGION.amazonaws.com/source.png?YOUR-PRESIGNED-QUERY"
+      }
+    },
+    "parameters": {
+      "width": 960,
+      "height": 544,
+      "num_frames": 9,
+      "fps": 24,
+      "image_strength": 0.7,
+      "image_compression": 18,
+      "seed": 42
+    }
+  }
+}

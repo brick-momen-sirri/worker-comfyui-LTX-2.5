@@ -1,0 +1,2 @@
+# Exact upstream root pyproject.toml override; see docs/dfr-4k.md.
+nvidia-cudnn-cu13==9.24.0.43

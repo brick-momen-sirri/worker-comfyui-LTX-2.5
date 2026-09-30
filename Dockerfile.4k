@@ -1,0 +1,13 @@
+# syntax=docker/dockerfile:1.7.1@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+# Reuse the previously verified complete model image: no model download/re-copy.
+# For distribution, pin BASE_IMAGE to that image's registry digest.
+ARG BASE_IMAGE=worker-comfyui-ltx25:int8
+FROM ${BASE_IMAGE}
+COPY ltx_worker /ltx_worker
+COPY workflows /workflows
+COPY scripts/generate_workflows.py /scripts/generate_workflows.py
+RUN python -m compileall -q /ltx_worker \
+    && python /scripts/download_models.py --verify-only --size-only \
+    && python /scripts/build_smoke.py
+LABEL io.ltx.resolution-profile="4k-qualification" \
+      org.opencontainers.image.description="Complete INT8 bundle plus exact UHD 4K generation and pixel-upscaler recipes; GPU qualification required"

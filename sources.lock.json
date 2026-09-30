@@ -1,0 +1,8 @@
+{
+  "schema_version": 1,
+  "sources": [
+    {"name": "ComfyUI v0.35.0", "repository": "https://github.com/comfyanonymous/ComfyUI.git", "commit": "a7b1d39d342d102f305797fb5ba12dc304d9c1f5", "destination": "/comfyui"},
+    {"name": "ComfyUI-LTXVideo", "repository": "https://github.com/Lightricks/ComfyUI-LTXVideo.git", "commit": "15d09abb5a187a8dcaea2fc31fe51ee96e6c9d0d", "destination": "/comfyui/custom_nodes/ComfyUI-LTXVideo"},
+    {"name": "comfyui_credit_tracker (preserved original pin)", "repository": "https://github.com/brick-momen-sirri/comfyui_credit_tracker.git", "commit": "8fbe08eb13d3875a5ca608e09131c29c4fd84386", "destination": "/comfyui/custom_nodes/comfyui_credit_tracker"}
+  ]
+}

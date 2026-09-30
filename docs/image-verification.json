@@ -1,0 +1,68 @@
+{
+  "verified_utc": "2026-09-10T17:00:54.5506689Z",
+  "image": {
+    "tag": "worker-comfyui-ltx25:int8",
+    "id": "sha256:74f62ddb4caddb1ec791c90f1d74c59dd84092b07cb507d290d3b1aa9c9905fa",
+    "platform": "linux/amd64",
+    "docker_reported_bytes": 42222685974,
+    "apparent_running_filesystem_bytes": 52001502862,
+    "registry_push": "not performed"
+  },
+  "build": {
+    "exit_code": 0,
+    "bundled_models": 11,
+    "model_bytes": 44542597655,
+    "exact_sizes_and_sha256": "passed",
+    "download_and_hash_seconds": 2898.9,
+    "layer_export_seconds": 1179.0,
+    "image_unpack_seconds": 272.5
+  },
+  "startup": {
+    "model_sizes": "passed",
+    "cuda_kernel": "passed on RTX 4090",
+    "registered_nodes": 1003,
+    "workflows": 18,
+    "required_node_classes": 54,
+    "model_filenames": "passed",
+    "credit_hooks": "passed",
+    "container_health": "healthy",
+    "oom_killed": false,
+    "build_token_and_cached_hf_tokens_absent": true
+  },
+  "local_api": {
+    "timestamp_utc": "2026-09-10T16:59:41.510718+00:00",
+    "url": "http://127.0.0.1:49640",
+    "passed": true,
+    "api_ready": true,
+    "ltx_inference": "not run",
+    "s3_delivery": "not tested",
+    "scope": "Local readiness, invalid input, and legacy image transport only",
+    "stage": "complete",
+    "invalid_input": {
+      "id": "test-21e3ef44-e306-4ba4-9044-16f955dcaef2",
+      "status": "FAILED",
+      "error": "Missing required media input 'image'"
+    },
+    "image_transport": {
+      "id": "test-fa28e6bd-d9a6-4019-9b82-002a1e0784d1",
+      "status": "COMPLETED",
+      "prompt_id": "5950a8ed-5d66-451f-a01e-6852d269f655",
+      "image_size": [
+        32,
+        32
+      ],
+      "pixel_verified": true,
+      "credit_usage_present": true,
+      "input_format": "base64_data_uri",
+      "output_format": "base64"
+    },
+    "elapsed_seconds": 0.578
+  },
+  "still_unverified": [
+    "LTX video/audio inference and output quality",
+    "Peak generation VRAM/RAM and throughput",
+    "Live S3 downloads/uploads",
+    "Runpod cloud job lifecycle and webhooks",
+    "BF16 full model image"
+  ]
+}

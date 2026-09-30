@@ -1,0 +1,107 @@
+{
+  "date": "2026-09-29",
+  "endpoint_id": "dfadob3rm5dg32",
+  "new_ai_inference": true,
+  "ai_canvas": [
+    1920,
+    1088
+  ],
+  "final_canvas": [
+    1920,
+    1080
+  ],
+  "transport": "Bundled CQ API graph with locally normalized source media, original worker workflow contract",
+  "image_rebuilt": false,
+  "endpoint_settings_changed": false,
+  "source_resolution": [
+    960,
+    540
+  ],
+  "fps": 30,
+  "final_frames": 200,
+  "final_duration_seconds": 6.666666666666667,
+  "postprocess": "Crop 4 rows from top and bottom, temporal trim/concat and encode. No spatial output resize or frame interpolation.",
+  "output_bytes": 9765036,
+  "output_sha256": "1f3f77f306ac06ee665af2ceb4937006dc2ea02bda4143a553c62619a68195b2",
+  "jobs": [
+    {
+      "part": 1,
+      "id": "8df62154-aac9-4fd0-bb2a-959d9fddf17d-e2",
+      "frames": 33,
+      "status": "COMPLETED",
+      "success": true,
+      "execution_time_ms": 73768,
+      "r2_download_verified": true,
+      "sha256": "d8a187285728aa7c734e2a173ec2cbf8a61e4c5b4461d96fd6320259b2d2e521"
+    },
+    {
+      "part": 2,
+      "id": "af079266-9bcd-413c-ae79-ac3a95b2d2f6-e2",
+      "frames": 49,
+      "status": "COMPLETED",
+      "success": true,
+      "execution_time_ms": 94844,
+      "r2_download_verified": true,
+      "sha256": "4d9716cc34fc7c26bac587fb5166e6e06c5a026fa4a1a3d3121b1037a34d7bd5"
+    },
+    {
+      "part": 3,
+      "id": "6523a136-a9a9-4fe8-9e40-93f3b3ce5f55-e2",
+      "frames": 49,
+      "status": "COMPLETED",
+      "success": true,
+      "execution_time_ms": 93870,
+      "r2_download_verified": true,
+      "sha256": "453f401f0e5acaf03cc74a1b49839b4b93ad5b9cd89b34ab96f4920327dd076c"
+    },
+    {
+      "part": 4,
+      "id": "19cd6c3c-f885-4d2e-b670-423b01e86c7d-e2",
+      "frames": 49,
+      "status": "COMPLETED",
+      "success": true,
+      "execution_time_ms": 116130,
+      "r2_download_verified": true,
+      "sha256": "3a3f55263819bd965732e460785b678551ca47871105a52ff64db60d6657893c"
+    },
+    {
+      "part": 5,
+      "id": "8efa5acc-4b11-4590-a072-a7e06b95cfd6-e1",
+      "frames": 49,
+      "status": "COMPLETED",
+      "success": true,
+      "execution_time_ms": 97392,
+      "r2_download_verified": true,
+      "sha256": "f88ade4ed567092214dae33f5abcf33411f4159812db4f4103f804fa02155121"
+    }
+  ],
+  "all_raw_videos_decode_verified": true,
+  "final_decode_verified": true,
+  "visually_inspected_frames": [
+    0,
+    28,
+    29,
+    60,
+    70,
+    71,
+    112,
+    113,
+    154,
+    155,
+    199
+  ],
+  "visual_observation": "Sampled frames show clearer clothing, hair, bedding and room detail, with synthesized changes and remaining motion blur. All four joins were inspected using adjacent frames, without an obvious large background color or framing jump. No formal temporal-quality or identity-fidelity benchmark was performed.",
+  "targeted_unit_tests_passed": 62,
+  "example_contract_passed": true,
+  "python_compile_passed": true,
+  "javascript_syntax_passed": true,
+  "local_video": "artifacts/bedroom-cq-1920/bedroom-CQ-regenerated-1920x1080.mp4",
+  "comparison_video": "artifacts/bedroom-cq-1920/bedroom-original-vs-AI-1920.mp4",
+  "raw_evidence_directory": ".research/bedroom-cq-1920-test",
+  "not_verified": [
+    "153-frame Full HD inference",
+    "Runtime GPU model and measured peak VRAM",
+    "Exact publisher GUI workflow equivalence",
+    "Updated named-mode deployment"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "sources": [
+    {
+      "name": "LTX-2 official DFR",
+      "repository": "https://github.com/Lightricks/LTX-2.git",
+      "commit": "a95ab856bf29407b6b066ede0abe1846050db56c",
+      "destination": "/opt/ltx"
+    }
+  ]
+}

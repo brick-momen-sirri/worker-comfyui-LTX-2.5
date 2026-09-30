@@ -1,0 +1,225 @@
+{
+  "model": {
+    "class_type": "UNETLoader",
+    "inputs": {
+      "unet_name": "ltx-2.5-22b-distilled-transformer-comfy-int8-convrot.safetensors",
+      "weight_dtype": "default"
+    }
+  },
+  "clip": {
+    "class_type": "CLIPLoader",
+    "inputs": {
+      "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+      "type": "ltxv",
+      "device": "default"
+    }
+  },
+  "video_vae": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ltx-2.5-video-vae-bf16.safetensors"
+    }
+  },
+  "audio_vae": {
+    "class_type": "VAELoader",
+    "inputs": {
+      "vae_name": "ltx-2.5-audio-vae-bf16.safetensors"
+    }
+  },
+  "positive": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "clip",
+        0
+      ],
+      "text": "A cinematic scene with natural motion and synchronized ambient sound."
+    }
+  },
+  "negative": {
+    "class_type": "CLIPTextEncode",
+    "inputs": {
+      "clip": [
+        "clip",
+        0
+      ],
+      "text": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts"
+    }
+  },
+  "conditioning": {
+    "class_type": "LTXVConditioning",
+    "inputs": {
+      "positive": [
+        "positive",
+        0
+      ],
+      "negative": [
+        "negative",
+        0
+      ],
+      "frame_rate": 24.0
+    }
+  },
+  "audio_latent": {
+    "class_type": "LTXVEmptyLatentAudio",
+    "inputs": {
+      "audio_vae": [
+        "audio_vae",
+        0
+      ],
+      "frames_number": 121,
+      "frame_rate": 24,
+      "batch_size": 1
+    }
+  },
+  "video_latent": {
+    "class_type": "EmptyLTXVLatentVideo",
+    "inputs": {
+      "width": 768,
+      "height": 512,
+      "length": 121,
+      "batch_size": 1
+    }
+  },
+  "sample_av": {
+    "class_type": "LTXVConcatAVLatent",
+    "inputs": {
+      "video_latent": [
+        "video_latent",
+        0
+      ],
+      "audio_latent": [
+        "audio_latent",
+        0
+      ]
+    }
+  },
+  "sample_noise": {
+    "class_type": "RandomNoise",
+    "inputs": {
+      "noise_seed": 42
+    }
+  },
+  "sample_sigmas": {
+    "class_type": "ManualSigmas",
+    "inputs": {
+      "sigmas": "1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875, 0.0"
+    }
+  },
+  "sample_sampler": {
+    "class_type": "KSamplerSelect",
+    "inputs": {
+      "sampler_name": "euler_ancestral"
+    }
+  },
+  "sample_guider": {
+    "class_type": "CFGGuider",
+    "inputs": {
+      "model": [
+        "model",
+        0
+      ],
+      "positive": [
+        "conditioning",
+        0
+      ],
+      "negative": [
+        "conditioning",
+        1
+      ],
+      "cfg": 1.0
+    }
+  },
+  "sample": {
+    "class_type": "SamplerCustomAdvanced",
+    "inputs": {
+      "noise": [
+        "sample_noise",
+        0
+      ],
+      "guider": [
+        "sample_guider",
+        0
+      ],
+      "sampler": [
+        "sample_sampler",
+        0
+      ],
+      "sigmas": [
+        "sample_sigmas",
+        0
+      ],
+      "latent_image": [
+        "sample_av",
+        0
+      ]
+    }
+  },
+  "sample_split": {
+    "class_type": "LTXVSeparateAVLatent",
+    "inputs": {
+      "av_latent": [
+        "sample",
+        0
+      ]
+    }
+  },
+  "decode_audio": {
+    "class_type": "LTXVAudioVAEDecode",
+    "inputs": {
+      "samples": [
+        "sample_split",
+        1
+      ],
+      "audio_vae": [
+        "audio_vae",
+        0
+      ]
+    }
+  },
+  "decode_video": {
+    "class_type": "VAEDecodeTiled",
+    "inputs": {
+      "samples": [
+        "sample_split",
+        0
+      ],
+      "vae": [
+        "video_vae",
+        0
+      ],
+      "tile_size": 512,
+      "overlap": 64,
+      "temporal_size": 64,
+      "temporal_overlap": 8
+    }
+  },
+  "video": {
+    "class_type": "CreateVideo",
+    "inputs": {
+      "images": [
+        "decode_video",
+        0
+      ],
+      "audio": [
+        "decode_audio",
+        0
+      ],
+      "fps": 24,
+      "bit_depth": 8
+    }
+  },
+  "save": {
+    "class_type": "SaveVideo",
+    "inputs": {
+      "video": [
+        "video",
+        0
+      ],
+      "filename_prefix": "ltx25/video",
+      "format": "mp4",
+      "format.codec": "h264",
+      "format.codec.encoding": "auto"
+    }
+  }
+}

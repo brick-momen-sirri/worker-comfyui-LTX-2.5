@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "model_family": "LTX-2.5-CQ-Enhancer-V2",
+  "precision": "cq-v2",
+  "modes": {
+    "video_enhance_cq_v2": {
+      "file": "video_enhance_cq_v2.json",
+      "description": "Generative restoration of low-quality video with the publisher's LTX 2.5 CQ Enhancer V2 recipe",
+      "official_source": "https://huggingface.co/CQdesign/LTX-2.5-CQ-Video-and-Image-Enhancer-LoRAs/blob/6495196bc21b2e24615b27e480b30049ca4efeea/Workflow/LTX2.5%20-%20CQ%20Enhancer%20lora%20video%20workflow%20V2.json",
+      "official_source_sha256": "7e97e75c6091bdc9eac68b4178f843a3d2a5325f4deb1d4ad5145604b2a4b503",
+      "prompt_required": false,
+      "defaults": {
+        "prompt": "",
+        "negative_prompt": "",
+        "fps": 30,
+        "num_frames": 153,
+        "width": 1280,
+        "height": 704,
+        "seed": 42,
+        "cfg": 1.0,
+        "distilled_lora_strength": 0.5,
+        "cq_lora_strength": 1.0,
+        "guide_strength": 1.0
+      },
+      "constraints": {
+        "prompt": {"type": "string", "max_length": 12000},
+        "negative_prompt": {"type": "string", "max_length": 12000},
+        "fps": {"type": "integer", "enum": [30]},
+        "num_frames": {"type": "integer", "minimum": 9, "maximum": 153, "multiple_of": 8, "offset": 1},
+        "width": {"type": "integer", "minimum": 256, "maximum": 2560, "multiple_of": 32},
+        "height": {"type": "integer", "minimum": 256, "maximum": 2560, "multiple_of": 32},
+        "seed": {"type": "integer", "minimum": 0, "maximum": 18446744073709551615},
+        "cfg": {"type": "number", "enum": [1.0]},
+        "distilled_lora_strength": {"type": "number", "minimum": 0.0, "maximum": 1.0},
+        "cq_lora_strength": {"type": "number", "minimum": 0.0, "maximum": 1.5},
+        "guide_strength": {"type": "number", "minimum": 0.0, "maximum": 1.0}
+      },
+      "bindings": {
+        "prompt": [{"node_id": "positive", "input": "text"}],
+        "negative_prompt": [{"node_id": "negative", "input": "text"}],
+        "fps": [
+          {"node_id": "conditioning", "input": "frame_rate"},
+          {"node_id": "audio_latent", "input": "frame_rate"},
+          {"node_id": "video", "input": "fps"}
+        ],
+        "num_frames": [
+          {"node_id": "video_latent", "input": "length"},
+          {"node_id": "audio_latent", "input": "frames_number"}
+        ],
+        "width": [{"node_id": "video_latent", "input": "width"}],
+        "height": [{"node_id": "video_latent", "input": "height"}],
+        "seed": [{"node_id": "noise", "input": "noise_seed"}],
+        "cfg": [{"node_id": "guider", "input": "cfg"}],
+        "distilled_lora_strength": [{"node_id": "distilled_lora", "input": "strength_model"}],
+        "cq_lora_strength": [{"node_id": "cq_lora", "input": "strength_model"}],
+        "guide_strength": [{"node_id": "guide", "input": "strength"}]
+      },
+      "media": {
+        "video": {
+          "kind": "video",
+          "node_id": "load_video",
+          "input": "file",
+          "required": true,
+          "ensure_audio": true
+        }
+      },
+      "output_prefix": [{"node_id": "save", "input": "filename_prefix"}],
+      "output_kind": "video",
+      "output_scale": 1,
+      "fixed_sampling_steps": 8,
+      "admission_profile": "cq_v2"
+    }
+  }
+}
