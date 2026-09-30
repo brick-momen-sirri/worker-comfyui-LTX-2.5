@@ -1,0 +1,67 @@
+{
+  "settings": {
+    "prompt": "Photorealistic architectural visualization film of a luxury waterfront residential development, matching the reference image. The camera is low over the water, centered in the marina channel, making a very slow, smooth dolly forward toward the buildings. A level horizon and a rectilinear wide-angle lens keep the building verticals straight. The pale stone apartment towers, stepped balconies, dark window frames, glass railings, and their spacing stay consistent throughout the shot. The white yachts remain moored along both sides and bob almost imperceptibly. Small natural ripples travel across the blue water, creating gently moving reflections of the buildings and boats. Palm fronds sway subtly in a light breeze. Clear blue sky, bright natural late-morning sunlight, realistic materials, balanced exposure and stable neutral colors. One continuous refined real-estate presentation shot with no cuts. Quiet water lapping and a soft breeze, no music or speech.",
+    "source_sha256": "bb19bfa0cd705f53989e0d301b532c017ea14778659bd3735289c86a615af947",
+    "image_sha256": "7d7b40491b6bd61b5b87f9ebdad69507c0d4fb88f4f2da97fb6c24e75afd5fd2",
+    "width": 2560,
+    "height": 1440,
+    "frames": 121,
+    "fps": 24,
+    "seed": 42,
+    "distilled_lora_strength": 1.0,
+    "cq_strengths": [
+      1.0
+    ],
+    "experimental": true,
+    "ordinary_i2v_publisher_supported": false,
+    "compared_to_previous_frames": 121,
+    "compared_to_previous_resolution": [
+      1920,
+      1088
+    ]
+  },
+  "job": {
+    "endpoint_id": "dfadob3rm5dg32",
+    "variant": "cq",
+    "cq_lora_strength": 1.0,
+    "parameters": {
+      "width": 2560,
+      "height": 1440,
+      "num_frames": 121,
+      "fps": 24,
+      "seed": 42,
+      "distilled_lora_strength": 1.0,
+      "cq_lora_strength": 1.0
+    },
+    "prompt": "Photorealistic architectural visualization film of a luxury waterfront residential development, matching the reference image. The camera is low over the water, centered in the marina channel, making a very slow, smooth dolly forward toward the buildings. A level horizon and a rectilinear wide-angle lens keep the building verticals straight. The pale stone apartment towers, stepped balconies, dark window frames, glass railings, and their spacing stay consistent throughout the shot. The white yachts remain moored along both sides and bob almost imperceptibly. Small natural ripples travel across the blue water, creating gently moving reflections of the buildings and boats. Palm fronds sway subtly in a light breeze. Clear blue sky, bright natural late-morning sunlight, realistic materials, balanced exposure and stable neutral colors. One continuous refined real-estate presentation shot with no cuts. Quiet water lapping and a soft breeze, no music or speech.",
+    "submitted_utc": "2026-09-30T11:32:55.504908+00:00",
+    "submission_attempted": true,
+    "job_id": "b4edcbd6-ece5-46f2-9039-a5342eefd447-e2",
+    "output_bytes": 10920130,
+    "output_sha256": "ad15ed54c12ddf76adda89cf9a07d40e08365f6053a8f4c40248e51876c3f50a",
+    "execution_time_ms": 219420,
+    "r2_download_verified": true
+  },
+  "output": "marina-I2V-CQ-121frames-2560x1440.mp4 (not included)",
+  "width": 2560,
+  "height": 1440,
+  "frames": 121,
+  "fps": 24,
+  "duration_seconds": 5.041667,
+  "bytes": 10920130,
+  "sha256": "ad15ed54c12ddf76adda89cf9a07d40e08365f6053a8f4c40248e51876c3f50a",
+  "has_audio": true,
+  "full_decode_passed": true,
+  "output_identical_to_remote_download": true,
+  "single_generation_job": true,
+  "postprocessing": "None. Original Runpod MP4 copied unchanged; no resizing, cropping, interpolation, retiming, or re-encoding.",
+  "gpu_model_verified": false,
+  "peak_vram_measured": false,
+  "audio_listened": false,
+  "review": {
+    "method": "Nine sampled frames at indices 0,15,30,45,60,75,90,105,120.",
+    "observations": "Consistent overall colors and coherent broad building forms in sampled frames. Boats and water move; exact scene-detail and moored-boat-position preservation is not established.",
+    "targeted_i2v_tests_passed": 6,
+    "same_source_prompt_seed_frames_and_sampling": true
+  }
+}

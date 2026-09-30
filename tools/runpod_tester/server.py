@@ -81,6 +81,10 @@ def get_config(endpoint_id="", api_key_configured=False, runtime="comfyui"):
     runtime = normalize_runtime(runtime)
     source = ({"modes": dfr_module().mode_specs()} if runtime == "dfr" else
               json.loads((ROOT / "workflows" / ("manifest.cq-v2.json" if runtime == "cq-v2" else "manifest.json")).read_text(encoding="utf-8")))
+    experimental_i2v = runtime == "cq-v2" and os.environ.get("RUNPOD_TESTER_I2V_CQ_EXPERIMENT") == "1"
+    if experimental_i2v:
+        import i2v_cq
+        source["modes"].update(i2v_cq.manifest()["modes"])
     priority = (["image_to_video_dfr_4k", "text_to_video_dfr_4k"] if runtime == "dfr" else
                 ["video_enhance_cq_v2"] if runtime == "cq-v2" else
                 ["text_to_video", "image_to_video", "first_last_frame", "video_to_video",
@@ -89,14 +93,15 @@ def get_config(endpoint_id="", api_key_configured=False, runtime="comfyui"):
     labels = {"text_to_video": "Text to video", "image_to_video": "Image to video",
               "first_last_frame": "First and last frames", "video_to_video": "Video to video",
               "video_upscale_x2": "Video upscale 2×", "text_to_audio": "Text to audio",
-              "video_enhance_cq_v2": "Video enhance · CQ V2"}
+              "video_enhance_cq_v2": "Video enhance · CQ V2",
+              "image_to_video_cq_experimental": "Image to video + CQ · experimental"}
     modes = []
     for name in names:
         spec = source["modes"][name]
         defaults = copy.deepcopy(spec["defaults"])
         if runtime == "comfyui":
             defaults.update(num_frames=9, fps=24, seed=42)
-        elif runtime == "cq-v2":
+        elif runtime == "cq-v2" and name == "video_enhance_cq_v2":
             # Start below the publisher's 153-frame cap for the first paid GPU test.
             defaults.update(num_frames=33, seed=42)
         if runtime == "comfyui" and "width" in defaults and spec.get("admission_profile") not in ("4k", "native_4k"):
@@ -116,7 +121,8 @@ def get_config(endpoint_id="", api_key_configured=False, runtime="comfyui"):
             "output_dimensions": spec.get("output_dimensions"),
             "admission_profile": spec.get("admission_profile"),
             "prompt_required": spec.get("prompt_required", True),
-            "transport": os.environ.get("RUNPOD_TESTER_4K_TRANSPORT", "workflow") if runtime == "comfyui" and name in four_k.MODES else "named",
+            "transport": ("workflow" if name == "image_to_video_cq_experimental" else
+                          os.environ.get("RUNPOD_TESTER_4K_TRANSPORT", "workflow") if runtime == "comfyui" and name in four_k.MODES else "named"),
         })
     return {"endpoint_id": endpoint_id, "api_key_configured": bool(api_key_configured),
             "runtime": runtime, "validation_preset_available": runtime == "comfyui",
@@ -199,15 +205,22 @@ class RunpodClient:
                 except four_k.InputError as exc:
                     raise TesterError(str(exc)) from None
             elif self.runtime == "cq-v2":
-                transport = os.environ.get("RUNPOD_TESTER_CQ_TRANSPORT", "named")
-                if transport not in ("workflow", "named"):
-                    raise TesterError("RUNPOD_TESTER_CQ_TRANSPORT must be workflow or named.")
-                if transport == "workflow":
-                    import cq_transport
+                if job_input["mode"] == "image_to_video_cq_experimental":
+                    import i2v_cq
                     try:
-                        outgoing = cq_transport.compile_workflow(job_input)
+                        outgoing = i2v_cq.compile_workflow(job_input)
                     except four_k.InputError as exc:
                         raise TesterError(str(exc)) from None
+                else:
+                    transport = os.environ.get("RUNPOD_TESTER_CQ_TRANSPORT", "named")
+                    if transport not in ("workflow", "named"):
+                        raise TesterError("RUNPOD_TESTER_CQ_TRANSPORT must be workflow or named.")
+                    if transport == "workflow":
+                        import cq_transport
+                        try:
+                            outgoing = cq_transport.compile_workflow(job_input)
+                        except four_k.InputError as exc:
+                            raise TesterError(str(exc)) from None
             elif job_input["mode"] in four_k.MODES:
                 transport = os.environ.get("RUNPOD_TESTER_4K_TRANSPORT", "workflow")
                 if transport not in ("workflow", "named"):

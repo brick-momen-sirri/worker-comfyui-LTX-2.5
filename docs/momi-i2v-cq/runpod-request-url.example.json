@@ -1,0 +1,305 @@
+{
+  "input": {
+    "workflow": {
+      "model": {
+        "class_type": "UNETLoader",
+        "inputs": {
+          "unet_name": "ltx-2.5-22b-dev-transformer-comfy-int8-convrot.safetensors",
+          "weight_dtype": "default"
+        }
+      },
+      "clip": {
+        "class_type": "CLIPLoader",
+        "inputs": {
+          "clip_name": "gemma4-12b-with-proj-ltx-2.5-comfy-int8-convrot.safetensors",
+          "type": "ltxv",
+          "device": "default"
+        }
+      },
+      "video_vae": {
+        "class_type": "VAELoader",
+        "inputs": {
+          "vae_name": "ltx-2.5-video-vae-conv-bf16.safetensors"
+        }
+      },
+      "audio_vae": {
+        "class_type": "VAELoader",
+        "inputs": {
+          "vae_name": "ltx-2.5-audio-vae-bf16.safetensors"
+        }
+      },
+      "positive": {
+        "class_type": "CLIPTextEncode",
+        "inputs": {
+          "clip": [
+            "clip",
+            0
+          ],
+          "text": "Photorealistic architectural visualization film of a luxury waterfront residential development, matching the reference image. The camera is low over the water, centered in the marina channel, making a very slow, smooth dolly forward toward the buildings. A level horizon and a rectilinear wide-angle lens keep the building verticals straight. The pale stone apartment towers, stepped balconies, dark window frames, glass railings, and their spacing stay consistent throughout the shot. The white yachts remain moored along both sides and bob almost imperceptibly. Small natural ripples travel across the blue water, creating gently moving reflections of the buildings and boats. Palm fronds sway subtly in a light breeze. Clear blue sky, bright natural late-morning sunlight, realistic materials, balanced exposure and stable neutral colors. One continuous refined real-estate presentation shot with no cuts. Quiet water lapping and a soft breeze, no music or speech."
+        }
+      },
+      "negative": {
+        "class_type": "CLIPTextEncode",
+        "inputs": {
+          "clip": [
+            "clip",
+            0
+          ],
+          "text": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts"
+        }
+      },
+      "conditioning": {
+        "class_type": "LTXVConditioning",
+        "inputs": {
+          "positive": [
+            "positive",
+            0
+          ],
+          "negative": [
+            "negative",
+            0
+          ],
+          "frame_rate": 24
+        }
+      },
+      "audio_latent": {
+        "class_type": "LTXVEmptyLatentAudio",
+        "inputs": {
+          "audio_vae": [
+            "audio_vae",
+            0
+          ],
+          "frames_number": 121,
+          "frame_rate": 24,
+          "batch_size": 1
+        }
+      },
+      "video_latent": {
+        "class_type": "EmptyLTXVLatentVideo",
+        "inputs": {
+          "width": 2560,
+          "height": 1440,
+          "length": 121,
+          "batch_size": 1
+        }
+      },
+      "load_image": {
+        "class_type": "LoadImage",
+        "inputs": {
+          "image": "input.png"
+        }
+      },
+      "image_resize": {
+        "class_type": "ImageScale",
+        "inputs": {
+          "image": [
+            "load_image",
+            0
+          ],
+          "upscale_method": "lanczos",
+          "width": 2560,
+          "height": 1440,
+          "crop": "center"
+        }
+      },
+      "image_preprocess": {
+        "class_type": "LTXVPreprocess",
+        "inputs": {
+          "image": [
+            "image_resize",
+            0
+          ],
+          "img_compression": 18
+        }
+      },
+      "image_condition": {
+        "class_type": "LTXVImgToVideoInplace",
+        "inputs": {
+          "vae": [
+            "video_vae",
+            0
+          ],
+          "image": [
+            "image_preprocess",
+            0
+          ],
+          "latent": [
+            "video_latent",
+            0
+          ],
+          "strength": 0.7,
+          "bypass": false
+        }
+      },
+      "sample_av": {
+        "class_type": "LTXVConcatAVLatent",
+        "inputs": {
+          "video_latent": [
+            "image_condition",
+            0
+          ],
+          "audio_latent": [
+            "audio_latent",
+            0
+          ]
+        }
+      },
+      "sample_noise": {
+        "class_type": "RandomNoise",
+        "inputs": {
+          "noise_seed": 42
+        }
+      },
+      "sample_sigmas": {
+        "class_type": "ManualSigmas",
+        "inputs": {
+          "sigmas": "1.0, 0.99375, 0.9875, 0.98125, 0.975, 0.909375, 0.725, 0.421875, 0.0"
+        }
+      },
+      "sample_sampler": {
+        "class_type": "KSamplerSelect",
+        "inputs": {
+          "sampler_name": "euler_ancestral"
+        }
+      },
+      "sample_guider": {
+        "class_type": "CFGGuider",
+        "inputs": {
+          "model": [
+            "cq_lora",
+            0
+          ],
+          "positive": [
+            "conditioning",
+            0
+          ],
+          "negative": [
+            "conditioning",
+            1
+          ],
+          "cfg": 1.0
+        }
+      },
+      "sample": {
+        "class_type": "SamplerCustomAdvanced",
+        "inputs": {
+          "noise": [
+            "sample_noise",
+            0
+          ],
+          "guider": [
+            "sample_guider",
+            0
+          ],
+          "sampler": [
+            "sample_sampler",
+            0
+          ],
+          "sigmas": [
+            "sample_sigmas",
+            0
+          ],
+          "latent_image": [
+            "sample_av",
+            0
+          ]
+        }
+      },
+      "sample_split": {
+        "class_type": "LTXVSeparateAVLatent",
+        "inputs": {
+          "av_latent": [
+            "sample",
+            0
+          ]
+        }
+      },
+      "decode_audio": {
+        "class_type": "LTXVAudioVAEDecode",
+        "inputs": {
+          "samples": [
+            "sample_split",
+            1
+          ],
+          "audio_vae": [
+            "audio_vae",
+            0
+          ]
+        }
+      },
+      "decode_video": {
+        "class_type": "VAEDecode",
+        "inputs": {
+          "samples": [
+            "sample_split",
+            0
+          ],
+          "vae": [
+            "video_vae",
+            0
+          ]
+        }
+      },
+      "video": {
+        "class_type": "CreateVideo",
+        "inputs": {
+          "images": [
+            "decode_video",
+            0
+          ],
+          "audio": [
+            "decode_audio",
+            0
+          ],
+          "fps": 24,
+          "bit_depth": 8
+        }
+      },
+      "save": {
+        "class_type": "SaveVideo",
+        "inputs": {
+          "video": [
+            "video",
+            0
+          ],
+          "filename_prefix": "momi/REPLACE_WITH_UNIQUE_JOB_UUID/I2V_CQ_1",
+          "format": "mp4",
+          "format.codec": "h264",
+          "format.codec.encoding": "auto"
+        }
+      },
+      "distilled_lora": {
+        "class_type": "LoraLoaderModelOnly",
+        "inputs": {
+          "model": [
+            "model",
+            0
+          ],
+          "lora_name": "ltx-2.5-22b-distilled-lora-450-bf16.safetensors",
+          "strength_model": 1.0
+        }
+      },
+      "cq_lora": {
+        "class_type": "LoraLoaderModelOnly",
+        "inputs": {
+          "model": [
+            "distilled_lora",
+            0
+          ],
+          "lora_name": "ltx2.5-CQ-enhancer-lora-V2.safetensors",
+          "strength_model": 1.0
+        }
+      }
+    },
+    "images": [
+      {
+        "name": "input.png",
+        "url": "https://storage.example.invalid/normalized-input.png?REPLACE_WITH_PRESIGNED_QUERY"
+      }
+    ]
+  },
+  "policy": {
+    "executionTimeout": 3600000,
+    "ttl": 7200000
+  }
+}

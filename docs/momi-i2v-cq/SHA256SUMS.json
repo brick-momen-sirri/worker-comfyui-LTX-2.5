@@ -1,0 +1,14 @@
+{
+  "archviz-prompt.txt": "c14dd1fd69c0832c08141d9e3612a2c60b854fbe381beb37676c937f69a00c9c",
+  "input-contract.json": "048a02e8b9dd9f194d8d915ed6d1f92b08b3461b249d50601dbf10b9bc88cf40",
+  "models.cq-v2.json": "9395eec5f374fa5579acf0c888fc92dd811c3143d6a8630f4a863d920a2a42c1",
+  "momi-input.example.json": "2841da533bcde67ee0a846a2d36e21de3e865f8b7a16f1442fb5715badf939f3",
+  "README.md": "3932ed5a880b6b38d51a9eb06785254933b6b0e995aee7d2802ed8c81b59df53",
+  "runpod-failure.illustrative.json": "edf8347874340961e44e3488259c7fc4fe7a2a23aec545ca625a493942402952",
+  "runpod-request-base64.example.json": "8fa864ca7cf1dd4cfe55934de13a189c2813e2a27a03ea83b71193c2c074de39",
+  "runpod-request-url.example.json": "ed85bb9cce9b156ea4c2e197d925c5f4562ff1930b44780509f5e44156a80880",
+  "runpod-success.sanitized.json": "2faf1c7126716f7fefc91c6c9717fccbeceb022b71c99ab8e05a812b5d1ca049",
+  "sources.lock.json": "f64f62c8b82271a6c6f499b24053ba952b74ed2485d59335e154a85da64c5f02",
+  "verification-2560-121.sanitized.json": "2f0c887adb92d8ae13c9e6928bd19c4cde6195e51e588ecc5c5bb955a291ee84",
+  "workflow-api.json": "dbd78941add4849e43258dddf6dfa0816b8d184cc6dd1439aef9a68296c6c9ca"
+}

@@ -1,0 +1,21 @@
+{
+  "mode": "image_to_video_cq_experimental",
+  "prompt": "Photorealistic architectural visualization film of a luxury waterfront residential development, matching the reference image. The camera is low over the water, centered in the marina channel, making a very slow, smooth dolly forward toward the buildings. A level horizon and a rectilinear wide-angle lens keep the building verticals straight. The pale stone apartment towers, stepped balconies, dark window frames, glass railings, and their spacing stay consistent throughout the shot. The white yachts remain moored along both sides and bob almost imperceptibly. Small natural ripples travel across the blue water, creating gently moving reflections of the buildings and boats. Palm fronds sway subtly in a light breeze. Clear blue sky, bright natural late-morning sunlight, realistic materials, balanced exposure and stable neutral colors. One continuous refined real-estate presentation shot with no cuts. Quiet water lapping and a soft breeze, no music or speech.",
+  "parameters": {
+    "width": 2560,
+    "height": 1440,
+    "num_frames": 121,
+    "fps": 24,
+    "seed": 42,
+    "cfg": 1.0,
+    "image_strength": 0.7,
+    "image_compression": 18,
+    "distilled_lora_strength": 1.0,
+    "cq_lora_strength": 1.0
+  },
+  "media": {
+    "image": {
+      "base64": "data:image/png;base64,REPLACE_WITH_BASE64"
+    }
+  }
+}

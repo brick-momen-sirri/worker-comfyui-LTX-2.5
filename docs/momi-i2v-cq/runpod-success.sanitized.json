@@ -1,0 +1,18 @@
+{
+  "id": "b4edcbd6-ece5-46f2-9039-a5342eefd447-e2",
+  "status": "COMPLETED",
+  "delayTime": 14344,
+  "executionTime": 219420,
+  "output": {
+    "success": true,
+    "prompt_id": "REDACTED_COMFY_PROMPT_ID",
+    "videos": [
+      {
+        "filename": "I2V_CQ_1_00001_.mp4",
+        "media_type": "video",
+        "type": "s3_url",
+        "data": "https://storage.example.invalid/generated.mp4?REDACTED_PRESIGNED_QUERY"
+      }
+    ]
+  }
+}

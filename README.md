@@ -30,6 +30,14 @@ The separate [`cq-v2` ComfyUI profile](docs/cq-v2.md) implements the publisher's
 
 The complete Linux/AMD64 image is published in the private Docker Hub repository as `momensirribrick/worker-comfyui-ltx25-cq:cq-v2`. Its remotely verified digest is `sha256:9bd09e9b9ee2386feb0e09d138be8a761e5faf61512897ea9140c667617b3c8a`, matching the local build. All six weights passed verification. A real Runpod CQ test enhanced a 320×176 base64 clip into **1280×704 / 33 frames / 30 FPS** in **50.481 seconds**, with successful R2 delivery, full video decoding and browser loading. Initial workers exposed only 31.4 GiB and failed the 47 GiB admission policy; the same job completed after the operator corrected GPU settings. The existing job ID, S3 output path and response handling are preserved. Attach Docker Hub read credentials to the Runpod template to pull this private image. Full 153-frame generation, exact publisher-workflow equivalence and peak VRAM still require qualification. See the guide for hardware estimates, API payloads, evidence, and the CQ repository's missing license declaration.
 
+## Experimental image-to-video with CQ
+
+The CQ image can also run an opt-in **image-to-video experiment with CQ Enhancer V2 as a LoRA**. A real Runpod job generated **2560×1440 / 121 frames / 24 FPS** in **219.420 seconds**, returning the original MP4 through R2. No output upscaling, retiming, or re-encoding was used. This is an experimentally tested adaptation; CQ's publisher documents restoration, and exact architectural-detail preservation is not established.
+
+The [workflow and tester instructions](workflows/experimental/README.md) include the graph, settings, and Full HD/QHD test results. The [Momi integration handoff](docs/momi-i2v-cq/README.md) includes complete base64/URL request examples, parameter bindings, pinned model inventory, sanitized responses, and measured QHD evidence.
+
+**Integration:** compile the trusted graph on your application's backend and send `input.workflow` plus `input.images`. The deployed CQ worker does **not** recognize `image_to_video_cq_experimental` as a named mode; only the opt-in local tester compiles it. The existing CQ image requires no rebuild when `ALLOW_CUSTOM_WORKFLOWS=true`. Keep provider credentials on the backend and complete application delivery only after the worker and required storage operations succeed.
+
 ## What is included
 
 **121-frame native 4K follow-up:** the same INT8 worker completed direct 3840×2176 sampling followed by a UHD crop, returning **3840×2160 / 5.041667 seconds at 24 fps**, with successful S3 delivery. Execution took **17 minutes 21.038 seconds**. The tester now accepts **9 or 121 frames** for this native preset, retaining nine as the default. [Measured native 4K results and request example](docs/native-4k.md)

@@ -106,6 +106,24 @@ The local temporary upload copy is removed after the upload request finishes. Up
 
 These page settings control **source input uploads**. Generated-output S3 delivery is still configured separately on the Runpod worker through `BUCKET_ENDPOINT_URL`, `BUCKET_ACCESS_KEY_ID`, `BUCKET_SECRET_ACCESS_KEY`, and optional `BUCKET_REGION`. Entering S3 settings here does not change those runtime secrets. See [the worker API contract](API.md).
 
+## Experimental image-to-video with CQ
+
+The CQ runtime exposes **Image to video + CQ · experimental** only when
+`RUNPOD_TESTER_I2V_CQ_EXPERIMENT=1`. It applies CQ V2 to ordinary image-to-video
+generation using the weights already installed in the CQ image. This is an
+experimental adaptation of the publisher's restoration LoRA, not a certified
+ordinary I2V recipe.
+
+The tester always compiles this mode into the existing `input.workflow` and
+`input.images` transport, independently of `RUNPOD_TESTER_CQ_TRANSPORT`. The
+deployed worker must permit custom workflows; its named-mode catalog does not
+contain the experimental mode. Existing CQ video restoration remains separate.
+
+See [setup, limits, and verified Full HD/QHD results](../workflows/experimental/README.md)
+and the [Momi integration handoff](momi-i2v-cq/README.md). The QHD 121-frame setting
+requires explicit local pixel/frame cap overrides. Its 24 FPS output is generated
+at that frame rate, with no restoration-style 30-to-24 FPS retiming.
+
 ## Reading status and failures
 
 - **R2 upload connection reset / WinError 10054:** verify that the endpoint contains only the service hostname, the bucket is separate, and Region is `auto`. Restart the local tester and reload the page after updating its files. The corrected page validates settings before sending the file, so malformed endpoint/region settings produce a specific error without transferring the binary body.
@@ -122,6 +140,12 @@ Runpod lists the supported [job states](https://docs.runpod.io/serverless/endpoi
 Queue and execution timing values returned by Runpod are milliseconds; the page presents readable timings. [Official ComfyUI API tutorial](https://docs.runpod.io/tutorials/serverless/comfyui)
 
 ## Verification
+
+**2026-09-30 I2V CQ publication checks:** all **88 tester tests** passed, including
+six targeted I2V cases. The opt-in graph passed pinned-source schema and model
+inventory validation, its Momi request examples matched the source graph, and
+JavaScript syntax checks passed. These checks made no live Runpod submissions;
+the earlier real I2V results are recorded in the [experimental workflow guide](../workflows/experimental/README.md).
 
 **DFR tester integration, local checks:** **73 tester tests passed in 2.767 seconds**, including 11 new tests for runtime catalog isolation, wrong-runtime rejection before cloud submission, named DFR payloads and policies, configuration without model/image dependencies, media transport preservation, and timeout redaction without retries. The HTTP cases used temporary loopback servers and every Runpod request was mocked. JavaScript syntax and whitespace checks passed. These checks did not launch or restart the user's tester, submit a cloud job, build a DFR image, run DFR inference, or validate DFR output quality.
 

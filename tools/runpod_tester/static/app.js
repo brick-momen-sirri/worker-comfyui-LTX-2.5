@@ -342,6 +342,7 @@
     if (!state.mode) return;
     const dfr = state.config.runtime === "dfr";
     const cq = state.config.runtime === "cq-v2";
+    const cqI2v = id === "image_to_video_cq_experimental";
     validation = validation && state.config.validation_preset_available;
     state.validation = validation; $("modeSelect").value = id;
     $("modeDescription").textContent = DESCRIPTIONS[id] || state.mode.description || friendly(id);
@@ -355,7 +356,7 @@
       : native4K
         ? "The 121-frame test completed on the 48 GB worker but the user observed color artifacts. This single-pass preset is experimental and is not the official staged DFR recipe. Peak VRAM was not measured."
         : "The Comfy image-to-video upscaling chain completed 9- and 33-frame tests on a 48 GB Runpod GPU. Standalone video upscaling still needs a GPU test. These presets are not the full DFR pipeline.";
-    $("presetBadge").textContent = validation ? "Validation only" : dfr ? "DFR · 4K" : cq ? "CQ V2 · 30 FPS" : fourK ? "4K preset" : "Small generation";
+    $("presetBadge").textContent = validation ? "Validation only" : dfr ? "DFR · 4K" : cqI2v ? "Experimental · 24 FPS" : cq ? "CQ V2 · 30 FPS" : fourK ? "4K preset" : "Small generation";
     $("validationButton").hidden = !state.config.validation_preset_available;
     $("validationButton").textContent = validation ? "Use generation preset" : "Validation-only preset";
     $("mediaInputs").replaceChildren(); state.media.clear(); state.fields.clear();

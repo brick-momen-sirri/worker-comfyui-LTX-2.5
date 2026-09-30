@@ -1,0 +1,8 @@
+{
+  "id": "EXAMPLE_JOB_ID",
+  "status": "COMPLETED",
+  "output": {
+    "success": false,
+    "error": "Example: required output upload failed."
+  }
+}
