@@ -2,7 +2,17 @@
 
 This project extends [runpod-workers/worker-comfyui](https://github.com/runpod-workers/worker-comfyui) with LTX 2.5 generation and enhancement workflows. It retains the customized Runpod/S3 response integration and adds validated named modes, official-node API graphs, build-time model downloads, dependency locks, startup checks, and failure-safe delivery. The implementation was developed in an isolated working copy to protect the original worker.
 
-The repository contains source code, workflow graphs, model inventories, dependency locks, and verification reports. Model weights download during the Docker build; credentials, local research files, and generated media are excluded from Git.
+The repository contains source code, workflow graphs, model inventories, dependency locks, verification reports, and selected demonstration media in `docs/media`. Model weights download during the Docker build; credentials, local research files, and the local `artifacts` directory are excluded from Git.
+
+## Example result
+
+**Source on the left, CQ Enhancer V2 result on the right.** This clip was enhanced in one continuous job at **2560×1440 / 121 frames**, then presented at **24 FPS / 5.04 seconds**. Worker execution took **11 minutes 28 seconds**. The preview below is reduced to 960 pixels wide and 10 FPS for display; the downloadable result retains its full resolution and 24 FPS.
+
+[![Animated comparison: source video on the left and CQ-enhanced video on the right](docs/media/cq-2560-before-after-preview.gif)](docs/media/cq-2560-single121-before-after.mp4)
+
+[Full-resolution enhanced MP4](docs/media/cq-2560x1440-single121-24fps.mp4) · [Before/after MP4](docs/media/cq-2560-single121-before-after.mp4) · [Still comparison](docs/media/cq-2560-before-after-preview.png)
+
+CQ is generative enhancement: color and fine texture can change. The model ran at 30 FPS internally, with all 121 source and output frames retimed to preserve the final 24 FPS presentation. See the [request example](examples/video_enhance_cq_v2_2560_121.json), [configuration](docs/cq-v2.md), and [measured verification](docs/cq-v2-2560-single121-verification.json).
 
 **Validation status:** the full INT8 Docker image **built and loaded successfully** as `worker-comfyui-ltx25:int8`, with all **eleven model files verified by exact size and SHA256**. All **103 tests passed inside Linux**. That image passed startup, registered **1,003 ComfyUI nodes**, validated its original 18 workflows, ran a real CUDA kernel on the RTX 4090, and measured **52.00 GB** apparent filesystem size. On September 12, the deployed image generated a 1280×768 clip and staged **3840×2160 clips of 9 and 33 frames**, with successful S3 delivery and browser media loading on the user's 48 GB Runpod worker. A separate **direct 4K nine-frame test also succeeded**, sampling once at 3840×2176 and cropping to UHD without video upscaling; execution took **73.208 seconds**. The updated source passes **150 worker tests and 82 tester tests**; the standard catalog has 21 workflows, and the isolated CQ catalog has one source- and live-schema-validated workflow. The new Comfy 4K image layer has not been built; Docker Desktop is now responding again, and the tester executes its bundled 4K graphs through the existing image. Callback/webhook delivery has not been independently tested. See [test results](docs/test-results.md), [staged 4K verification](docs/4k.md), and [direct 4K verification](docs/native-4k.md).
 
