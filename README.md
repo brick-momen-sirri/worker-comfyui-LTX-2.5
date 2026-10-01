@@ -38,6 +38,8 @@ The [workflow and tester instructions](workflows/experimental/README.md) include
 
 **Integration:** compile the trusted graph on your application's backend and send `input.workflow` plus `input.images`. The deployed CQ worker does **not** recognize `image_to_video_cq_experimental` as a named mode; only the opt-in local tester compiles it. The existing CQ image requires no rebuild when `ALLOW_CUSTOM_WORKFLOWS=true`. Keep provider credentials on the backend and complete application delivery only after the worker and required storage operations succeed.
 
+**First and last frames:** the [CQ two-image workflow and integration guide](workflows/experimental/first-last-cq.md) includes the exact tested [API graph](workflows/experimental/first_last_frame_cq.json), [manifest](workflows/experimental/manifest.first-last-cq.json), and [reference compiler](tools/runpod_tester/first_last_cq.py). All three 121-frame tests completed at generation canvases of 1280×736, 1920×1088, and 2560×1440; local crops produced exact 720p/1080p deliverables. The sampled transition frames showed architectural distortion at every resolution, despite close endpoint compositions. Use this CQ-specific graph for the existing CQ image; the standard `first_last_frame.json` uses a different model stack. [Measured results](docs/first-last-cq-verification.json)
+
 ## What is included
 
 **121-frame native 4K follow-up:** the same INT8 worker completed direct 3840×2176 sampling followed by a UHD crop, returning **3840×2160 / 5.041667 seconds at 24 fps**, with successful S3 delivery. Execution took **17 minutes 21.038 seconds**. The tester now accepts **9 or 121 frames** for this native preset, retaining nine as the default. [Measured native 4K results and request example](docs/native-4k.md)

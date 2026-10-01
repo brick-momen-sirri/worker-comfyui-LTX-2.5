@@ -1,5 +1,7 @@
 # Experimental image-to-video with CQ Enhancer V2
 
+For the separate two-image experiment, see [first/last-frame CQ animation](first-last-cq.md).
+
 This is a controlled experiment, not a publisher-supported CQ generation recipe.
 [CQ's model card](https://huggingface.co/CQdesign/LTX-2.5-CQ-Video-and-Image-Enhancer-LoRAs)
 documents reference-guided restoration and recommends its own workflow. Applying

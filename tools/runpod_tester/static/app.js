@@ -342,7 +342,7 @@
     if (!state.mode) return;
     const dfr = state.config.runtime === "dfr";
     const cq = state.config.runtime === "cq-v2";
-    const cqI2v = id === "image_to_video_cq_experimental";
+    const cqI2v = ["image_to_video_cq_experimental", "first_last_frame_cq_experimental"].includes(id);
     validation = validation && state.config.validation_preset_available;
     state.validation = validation; $("modeSelect").value = id;
     $("modeDescription").textContent = DESCRIPTIONS[id] || state.mode.description || friendly(id);

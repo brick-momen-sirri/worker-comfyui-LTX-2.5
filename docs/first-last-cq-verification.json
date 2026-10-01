@@ -1,0 +1,213 @@
+{
+  "date": "2026-10-01",
+  "endpoint_id": "dfadob3rm5dg32",
+  "workflow": "first_last_frame_cq_experimental",
+  "all_three_jobs_completed": true,
+  "new_model_download_or_docker_rebuild": false,
+  "frames": 121,
+  "fps": 24,
+  "duration_seconds": 5.041666666666667,
+  "prompt": "One continuous photorealistic architectural visualization shot of the sculptural concrete and glass waterfront building in the reference images. Start from the close low-angle composition of the first image and finish on the wider sunset composition of the last image. The camera glides slowly backward and slightly left along the promenade, gently opening the view toward the sunset and smoothly leveling its roll as the facade recedes toward the right side of the frame. Preserve the building's curved concrete shells, repeating vertical fins, window mullions, glass panels, walkway and benches as a coherent rigid structure throughout the camera move. Warm golden-hour sunlight and amber reflections stay natural and stable, with a gradual reveal of the low sun and softly textured sky. Small distant pedestrians move naturally. Smooth restrained real-estate cinematography, realistic material detail, gradual perspective parallax, a single uninterrupted take. Quiet outdoor ambience and a light breeze, no speech or music.",
+  "tests": [
+    {
+      "preset": "720",
+      "job": {
+        "endpoint_id": "dfadob3rm5dg32",
+        "preset": "720",
+        "parameters": {
+          "width": 1280,
+          "height": 736,
+          "num_frames": 121,
+          "fps": 24,
+          "seed": 42,
+          "first_frame_strength": 0.7,
+          "last_frame_strength": 0.7,
+          "distilled_lora_strength": 1.0,
+          "cq_lora_strength": 1.0
+        },
+        "submitted_utc": "2026-10-01T07:46:31.107931+00:00",
+        "submission_attempted": true,
+        "job_id": "bb999d07-77da-47d7-b9fe-c87a343c649c-e2",
+        "output_bytes": 4538327,
+        "output_sha256": "b7221add0b0b442cf7d8a655dd6f7693894f5800afd495ff5bab29ca5fca0d4e",
+        "execution_time_ms": 58977,
+        "delay_time_ms": 13517,
+        "r2_download_verified": true
+      },
+      "source_hashes": {
+        "first_frame": {
+          "sha256": "69a9a2eb00e00ae81f20b4a2087e0b0db9ffebc40c91db7af56bc4673581f65f",
+          "bytes": 2856190
+        },
+        "last_frame": {
+          "sha256": "741d8a4e800dff703af1731b98b2f671b79e0ab5fed8e8bca6506e1d38d45442",
+          "bytes": 2143232
+        }
+      },
+      "generation_width": 1280,
+      "generation_height": 736,
+      "width": 1280,
+      "height": 720,
+      "frames": 121,
+      "fps": 24,
+      "duration_seconds": 5.041667,
+      "output": "first-last-CQ-1280x720-121frames.mp4",
+      "bytes": 7513611,
+      "sha256": "d9a3d70a8851ecd82a08197611d1bb0d096548e35386df2d27d506ac23a6ad20",
+      "has_audio": true,
+      "full_decode_passed": true,
+      "raw_full_decode_passed": true,
+      "single_generation_job": true,
+      "postprocessing": "Crop 8 rows at top and bottom; H.264 CRF16 encode; audio copied. No spatial scaling, frame interpolation, or retiming.",
+      "endpoints_inserted_after_generation": false,
+      "exact_endpoint_reconstruction_guaranteed": false,
+      "gpu_model_verified": false,
+      "peak_vram_measured": false,
+      "audio_listened": false,
+      "source_schema_validated": true,
+      "local_tester_tests_passed": 94,
+      "visual_review": {
+        "method": "Inspected first/last reference comparison and nine sampled video frames (0,15,30,45,60,75,90,105,120).",
+        "endpoint_observation": "Generated endpoint compositions follow the reference images closely, with detail differences. They are not exact source-frame copies.",
+        "transition_observation": "Visible bending/morphing in glass mullions, facade edges and some plaza details during the middle of the move. Higher resolution does not eliminate it.",
+        "color_observation": "Sampled frames retain the warm golden-hour palette; no broad color failure observed in this review.",
+        "rigid_architecture_quality_passed": false,
+        "full_motion_or_audio_review_performed": false
+      }
+    },
+    {
+      "preset": "1080",
+      "job": {
+        "endpoint_id": "dfadob3rm5dg32",
+        "preset": "1080",
+        "parameters": {
+          "width": 1920,
+          "height": 1088,
+          "num_frames": 121,
+          "fps": 24,
+          "seed": 42,
+          "first_frame_strength": 0.7,
+          "last_frame_strength": 0.7,
+          "distilled_lora_strength": 1.0,
+          "cq_lora_strength": 1.0
+        },
+        "submitted_utc": "2026-10-01T07:48:38.745550+00:00",
+        "submission_attempted": true,
+        "job_id": "4136e668-d2f8-4deb-9e75-e8ebfecaf95d-e1",
+        "output_bytes": 8193679,
+        "output_sha256": "80acd09b1f185dd2a35477793bfa61d60e2408284b4b45d58da5d6be15603f89",
+        "execution_time_ms": 118380,
+        "delay_time_ms": 14130,
+        "r2_download_verified": true
+      },
+      "source_hashes": {
+        "first_frame": {
+          "sha256": "69a9a2eb00e00ae81f20b4a2087e0b0db9ffebc40c91db7af56bc4673581f65f",
+          "bytes": 2856190
+        },
+        "last_frame": {
+          "sha256": "741d8a4e800dff703af1731b98b2f671b79e0ab5fed8e8bca6506e1d38d45442",
+          "bytes": 2143232
+        }
+      },
+      "generation_width": 1920,
+      "generation_height": 1088,
+      "width": 1920,
+      "height": 1080,
+      "frames": 121,
+      "fps": 24,
+      "duration_seconds": 5.041667,
+      "output": "first-last-CQ-1920x1080-121frames.mp4",
+      "bytes": 15985409,
+      "sha256": "4975087244e3ebaaab277f2dc73da0a922063d2064f7f7711214750a5c105999",
+      "has_audio": true,
+      "full_decode_passed": true,
+      "raw_full_decode_passed": true,
+      "single_generation_job": true,
+      "postprocessing": "Crop 4 rows at top and bottom; H.264 CRF16 encode; audio copied. No spatial scaling, frame interpolation, or retiming.",
+      "endpoints_inserted_after_generation": false,
+      "exact_endpoint_reconstruction_guaranteed": false,
+      "gpu_model_verified": false,
+      "peak_vram_measured": false,
+      "audio_listened": false,
+      "source_schema_validated": true,
+      "local_tester_tests_passed": 94,
+      "visual_review": {
+        "method": "Inspected first/last reference comparison and nine sampled video frames (0,15,30,45,60,75,90,105,120).",
+        "endpoint_observation": "Generated endpoint compositions follow the reference images closely, with detail differences. They are not exact source-frame copies.",
+        "transition_observation": "Visible bending/morphing in glass mullions, facade edges and some plaza details during the middle of the move. Higher resolution does not eliminate it.",
+        "color_observation": "Sampled frames retain the warm golden-hour palette; no broad color failure observed in this review.",
+        "rigid_architecture_quality_passed": false,
+        "full_motion_or_audio_review_performed": false
+      }
+    },
+    {
+      "preset": "2560",
+      "job": {
+        "endpoint_id": "dfadob3rm5dg32",
+        "preset": "2560",
+        "parameters": {
+          "width": 2560,
+          "height": 1440,
+          "num_frames": 121,
+          "fps": 24,
+          "seed": 42,
+          "first_frame_strength": 0.7,
+          "last_frame_strength": 0.7,
+          "distilled_lora_strength": 1.0,
+          "cq_lora_strength": 1.0
+        },
+        "submitted_utc": "2026-10-01T07:48:41.396393+00:00",
+        "submission_attempted": true,
+        "job_id": "4bf37072-d178-4359-8dc3-e5a4a800ed6c-e2",
+        "output_bytes": 13564956,
+        "output_sha256": "c17d2424fcf95ec228015e81d9b84cd62308088169b889865b1f090ae9f1c01d",
+        "execution_time_ms": 280510,
+        "delay_time_ms": 21426,
+        "r2_download_verified": true
+      },
+      "source_hashes": {
+        "first_frame": {
+          "sha256": "69a9a2eb00e00ae81f20b4a2087e0b0db9ffebc40c91db7af56bc4673581f65f",
+          "bytes": 2856190
+        },
+        "last_frame": {
+          "sha256": "741d8a4e800dff703af1731b98b2f671b79e0ab5fed8e8bca6506e1d38d45442",
+          "bytes": 2143232
+        }
+      },
+      "generation_width": 2560,
+      "generation_height": 1440,
+      "width": 2560,
+      "height": 1440,
+      "frames": 121,
+      "fps": 24,
+      "duration_seconds": 5.041667,
+      "output": "first-last-CQ-2560x1440-121frames.mp4",
+      "bytes": 13564956,
+      "sha256": "c17d2424fcf95ec228015e81d9b84cd62308088169b889865b1f090ae9f1c01d",
+      "has_audio": true,
+      "full_decode_passed": true,
+      "raw_full_decode_passed": true,
+      "single_generation_job": true,
+      "postprocessing": "None; original downloaded MP4 copied unchanged.",
+      "endpoints_inserted_after_generation": false,
+      "exact_endpoint_reconstruction_guaranteed": false,
+      "gpu_model_verified": false,
+      "peak_vram_measured": false,
+      "audio_listened": false,
+      "source_schema_validated": true,
+      "local_tester_tests_passed": 94,
+      "output_identical_to_remote_download": true,
+      "visual_review": {
+        "method": "Inspected first/last reference comparison and nine sampled video frames (0,15,30,45,60,75,90,105,120).",
+        "endpoint_observation": "Generated endpoint compositions follow the reference images closely, with detail differences. They are not exact source-frame copies. An additional distant background building is visible near the final view.",
+        "transition_observation": "Visible bending/morphing in glass mullions, facade edges and some plaza details during the middle of the move. Higher resolution does not eliminate it.",
+        "color_observation": "Sampled frames retain the warm golden-hour palette; no broad color failure observed in this review.",
+        "rigid_architecture_quality_passed": false,
+        "full_motion_or_audio_review_performed": false
+      }
+    }
+  ],
+  "conclusion": "The existing CQ worker executes both-image-guided generation at all three canvases. Delivery, dimensions, frame counts, FPS and decoding passed. This image pair does not pass rigid-architecture visual quality because geometry morphs during the transition."
+}

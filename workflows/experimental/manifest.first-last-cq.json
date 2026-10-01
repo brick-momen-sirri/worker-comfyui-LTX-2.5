@@ -1,0 +1,240 @@
+{
+  "schema_version": 1,
+  "experimental": true,
+  "modes": {
+    "first_last_frame_cq_experimental": {
+      "file": "experimental/first_last_frame_cq.json",
+      "description": "Experimental first/last-frame generation with CQ V2 LoRA and the installed CQ model stack. Both images guide the endpoints; exact reconstruction is not guaranteed.",
+      "official_source": "https://github.com/Comfy-Org/workflow_templates/blob/cce0b679980e4215000f67fe7b12c3a1982310ea/templates/video_ltx2_5_flf2v.json",
+      "defaults": {
+        "prompt": "A cinematic scene with natural motion and synchronized ambient sound.",
+        "negative_prompt": "blurry, out of focus, low quality, flickering, distorted proportions, extra limbs, text artifacts",
+        "fps": 24,
+        "num_frames": 121,
+        "width": 1280,
+        "height": 736,
+        "image_compression": 18,
+        "first_frame_strength": 0.7,
+        "last_frame_strength": 0.7,
+        "seed": 42,
+        "cfg": 1.0,
+        "distilled_lora_strength": 1.0,
+        "cq_lora_strength": 1.0
+      },
+      "constraints": {
+        "prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "negative_prompt": {
+          "type": "string",
+          "max_length": 12000
+        },
+        "fps": {
+          "type": "integer",
+          "enum": [
+            24
+          ]
+        },
+        "num_frames": {
+          "type": "integer",
+          "minimum": 9,
+          "maximum": 121,
+          "multiple_of": 8,
+          "offset": 1
+        },
+        "width": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 2560,
+          "multiple_of": 32
+        },
+        "height": {
+          "type": "integer",
+          "minimum": 256,
+          "maximum": 1440,
+          "multiple_of": 32
+        },
+        "image_compression": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 100
+        },
+        "first_frame_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "last_frame_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "seed": {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 18446744073709551615
+        },
+        "cfg": {
+          "type": "number",
+          "enum": [
+            1.0
+          ]
+        },
+        "distilled_lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "cq_lora_strength": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "bindings": {
+        "prompt": [
+          {
+            "node_id": "positive",
+            "input": "text"
+          }
+        ],
+        "negative_prompt": [
+          {
+            "node_id": "negative",
+            "input": "text"
+          }
+        ],
+        "fps": [
+          {
+            "node_id": "conditioning",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "audio_latent",
+            "input": "frame_rate"
+          },
+          {
+            "node_id": "video",
+            "input": "fps"
+          }
+        ],
+        "num_frames": [
+          {
+            "node_id": "audio_latent",
+            "input": "frames_number"
+          },
+          {
+            "node_id": "video_latent",
+            "input": "length"
+          }
+        ],
+        "width": [
+          {
+            "node_id": "video_latent",
+            "input": "width"
+          },
+          {
+            "node_id": "first_frame_resize",
+            "input": "width"
+          },
+          {
+            "node_id": "last_frame_resize",
+            "input": "width"
+          }
+        ],
+        "height": [
+          {
+            "node_id": "video_latent",
+            "input": "height"
+          },
+          {
+            "node_id": "first_frame_resize",
+            "input": "height"
+          },
+          {
+            "node_id": "last_frame_resize",
+            "input": "height"
+          }
+        ],
+        "image_compression": [
+          {
+            "node_id": "first_frame_preprocess",
+            "input": "img_compression"
+          },
+          {
+            "node_id": "last_frame_preprocess",
+            "input": "img_compression"
+          }
+        ],
+        "first_frame_strength": [
+          {
+            "node_id": "first_frame_condition",
+            "input": "strength"
+          }
+        ],
+        "last_frame_strength": [
+          {
+            "node_id": "last_frame_condition",
+            "input": "strength"
+          }
+        ],
+        "seed": [
+          {
+            "node_id": "sample_noise",
+            "input": "noise_seed"
+          }
+        ],
+        "cfg": [
+          {
+            "node_id": "sample_guider",
+            "input": "video_cfg"
+          },
+          {
+            "node_id": "sample_guider",
+            "input": "audio_cfg"
+          }
+        ],
+        "distilled_lora_strength": [
+          {
+            "node_id": "distilled_lora",
+            "input": "strength_model"
+          }
+        ],
+        "cq_lora_strength": [
+          {
+            "node_id": "cq_lora",
+            "input": "strength_model"
+          }
+        ]
+      },
+      "media": {
+        "first_frame": {
+          "kind": "image",
+          "node_id": "load_first_frame",
+          "input": "image",
+          "required": true
+        },
+        "last_frame": {
+          "kind": "image",
+          "node_id": "load_last_frame",
+          "input": "image",
+          "required": true
+        }
+      },
+      "output_prefix": [
+        {
+          "node_id": "save",
+          "input": "filename_prefix"
+        }
+      ],
+      "output_kind": "video",
+      "stages": 1,
+      "output_scale": 1,
+      "fixed_sampling_steps": 8,
+      "admission_profile": "cq_v2",
+      "experimental": true,
+      "prompt_required": true
+    }
+  }
+}

@@ -85,6 +85,9 @@ def get_config(endpoint_id="", api_key_configured=False, runtime="comfyui"):
     if experimental_i2v:
         import i2v_cq
         source["modes"].update(i2v_cq.manifest()["modes"])
+    if runtime == "cq-v2" and os.environ.get("RUNPOD_TESTER_FIRST_LAST_CQ_EXPERIMENT") == "1":
+        import first_last_cq
+        source["modes"].update(first_last_cq.manifest()["modes"])
     priority = (["image_to_video_dfr_4k", "text_to_video_dfr_4k"] if runtime == "dfr" else
                 ["video_enhance_cq_v2"] if runtime == "cq-v2" else
                 ["text_to_video", "image_to_video", "first_last_frame", "video_to_video",
@@ -94,7 +97,8 @@ def get_config(endpoint_id="", api_key_configured=False, runtime="comfyui"):
               "first_last_frame": "First and last frames", "video_to_video": "Video to video",
               "video_upscale_x2": "Video upscale 2×", "text_to_audio": "Text to audio",
               "video_enhance_cq_v2": "Video enhance · CQ V2",
-              "image_to_video_cq_experimental": "Image to video + CQ · experimental"}
+              "image_to_video_cq_experimental": "Image to video + CQ · experimental",
+              "first_last_frame_cq_experimental": "First and last frames + CQ · experimental"}
     modes = []
     for name in names:
         spec = source["modes"][name]
@@ -121,7 +125,7 @@ def get_config(endpoint_id="", api_key_configured=False, runtime="comfyui"):
             "output_dimensions": spec.get("output_dimensions"),
             "admission_profile": spec.get("admission_profile"),
             "prompt_required": spec.get("prompt_required", True),
-            "transport": ("workflow" if name == "image_to_video_cq_experimental" else
+            "transport": ("workflow" if name in ("image_to_video_cq_experimental", "first_last_frame_cq_experimental") else
                           os.environ.get("RUNPOD_TESTER_4K_TRANSPORT", "workflow") if runtime == "comfyui" and name in four_k.MODES else "named"),
         })
     return {"endpoint_id": endpoint_id, "api_key_configured": bool(api_key_configured),
@@ -205,7 +209,13 @@ class RunpodClient:
                 except four_k.InputError as exc:
                     raise TesterError(str(exc)) from None
             elif self.runtime == "cq-v2":
-                if job_input["mode"] == "image_to_video_cq_experimental":
+                if job_input["mode"] == "first_last_frame_cq_experimental":
+                    import first_last_cq
+                    try:
+                        outgoing = first_last_cq.compile_workflow(job_input)
+                    except four_k.InputError as exc:
+                        raise TesterError(str(exc)) from None
+                elif job_input["mode"] == "image_to_video_cq_experimental":
                     import i2v_cq
                     try:
                         outgoing = i2v_cq.compile_workflow(job_input)
